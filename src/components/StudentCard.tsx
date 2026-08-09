@@ -1,7 +1,7 @@
-import { Phone, MessageSquare } from 'lucide-react';
-import { StatusBadge } from './StatusBadge';
-import type { StudentViewModel } from '../data/types';
-import { formatCurrency, formatPhone } from '../utils/format';
+import { Phone, MessageSquare } from "lucide-react";
+import { StatusBadge } from "./StatusBadge";
+import type { StudentViewModel } from "../data/types";
+import { formatCurrency, formatPhone } from "../utils/format";
 
 interface StudentCardProps {
   student: StudentViewModel;
@@ -13,7 +13,7 @@ export function StudentCard({ student, onTap }: StudentCardProps) {
     <div
       onClick={() => onTap(student)}
       onKeyDown={(e) => {
-        if (e.key === 'Enter') onTap(student);
+        if (e.key === "Enter") onTap(student);
       }}
       tabIndex={0}
       role="button"
@@ -28,31 +28,43 @@ export function StudentCard({ student, onTap }: StudentCardProps) {
       {/* Top: name + status */}
       <div className="flex items-start justify-between gap-3 mb-3">
         <div className="min-w-0">
-          <div className="font-semibold text-text-primary truncate">{student.name}</div>
+          <div className="font-semibold text-text-primary truncate">
+            {student.name}
+          </div>
           <div className="text-xs text-text-muted mt-0.5">
             Class {student.class}-{student.section}
           </div>
           {student.waiverInfo && (
             <div className="text-xs text-violet-400 mt-1">
-              {student.waiverInfo.waiverType} · {student.waiverInfo.owedComponent} Due {formatCurrency(student.waiverInfo.owedAmount)}
+              {student.waiverInfo.waiverType} ·{" "}
+              {student.waiverInfo.owedComponent} Due{" "}
+              {formatCurrency(student.waiverInfo.owedAmount)}
             </div>
           )}
         </div>
-        <StatusBadge status={student.displayStatus} statusColor={student.statusColor} />
+        <StatusBadge
+          status={student.displayStatus}
+          statusColor={student.statusColor}
+        />
       </div>
 
       {/* Middle: balance + overdue */}
       <div className="flex items-baseline justify-between mb-3">
         <div>
           <div className="text-xs text-text-muted">Balance</div>
-          <div className={`text-lg font-bold ${student.balance > 0 ? 'text-red-400' : student.balance < 0 ? 'text-sky-400' : 'text-emerald-400'}`}>
-            {student.balance < 0 && '−'}{formatCurrency(Math.abs(student.balance))}
+          <div
+            className={`text-lg font-bold ${student.balance > 0 ? "text-red-400" : student.balance < 0 ? "text-sky-400" : "text-emerald-400"}`}
+          >
+            {student.balance < 0 && "−"}
+            {formatCurrency(Math.abs(student.balance))}
           </div>
         </div>
         {student.daysOverdue > 0 && (
           <div className="text-right">
             <div className="text-xs text-text-muted">Overdue</div>
-            <div className="text-lg font-bold text-red-400">{student.daysOverdue}d</div>
+            <div className="text-lg font-bold text-red-400">
+              {student.daysOverdue}d
+            </div>
           </div>
         )}
       </div>

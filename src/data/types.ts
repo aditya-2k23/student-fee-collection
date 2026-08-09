@@ -1,5 +1,3 @@
-// ─── Raw data types (matching fee-data.json) ───
-
 export interface Meta {
   school: string;
   academicYear: string;
@@ -33,19 +31,19 @@ export interface Payment {
   date: string;
   amount: number;
   mode: string;
-  status: 'SUCCESS' | 'BOUNCED' | 'FAILED' | 'PENDING';
+  status: "SUCCESS" | "BOUNCED" | "FAILED" | "PENDING";
   reference: string;
   term?: string;
 }
 
 export type RawStatus =
-  | 'OVERDUE'
-  | 'PARTIALLY_PAID'
-  | 'PAID'
-  | 'CREDIT_BALANCE'
-  | 'PAYMENT_FAILED'
-  | 'INSTALMENT_PLAN'
-  | 'WITHDRAWN';
+  | "OVERDUE"
+  | "PARTIALLY_PAID"
+  | "PAID"
+  | "CREDIT_BALANCE"
+  | "PAYMENT_FAILED"
+  | "INSTALMENT_PLAN"
+  | "WITHDRAWN";
 
 export interface RawStudent {
   id: string;
@@ -82,20 +80,20 @@ export interface FeeData {
 // ─── View model types (derived from raw data) ───
 
 export type DisplayStatus =
-  | 'Overdue'
-  | 'Partially Paid'
-  | 'Paid'
-  | 'Advance'
-  | 'Cheque Bounced'
-  | 'Instalment Plan'
-  | 'Withdrawn';
+  | "Overdue"
+  | "Partially Paid"
+  | "Paid"
+  | "Advance"
+  | "Cheque Bounced"
+  | "Instalment Plan"
+  | "Withdrawn";
 
 export type FilterKey =
-  | 'action-required'
-  | 'paid'
-  | 'instalment-plan'
-  | 'withdrawn'
-  | 'all';
+  | "action-required"
+  | "paid"
+  | "instalment-plan"
+  | "withdrawn"
+  | "all";
 
 export interface WaiverInfo {
   waiverType: string;

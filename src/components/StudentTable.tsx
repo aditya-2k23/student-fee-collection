@@ -1,6 +1,6 @@
-import { StatusBadge } from './StatusBadge';
-import type { StudentViewModel } from '../data/types';
-import { formatCurrency, formatPhone } from '../utils/format';
+import { StatusBadge } from "./StatusBadge";
+import type { StudentViewModel } from "../data/types";
+import { formatCurrency, formatPhone } from "../utils/format";
 
 interface StudentTableProps {
   students: StudentViewModel[];
@@ -34,26 +34,46 @@ export function StudentTable({
                   if (el) el.indeterminate = someSelected && !allSelected;
                 }}
                 onChange={onToggleSelectAll}
-                aria-label={allSelected ? 'Deselect all students' : 'Select all students'}
+                aria-label={
+                  allSelected ? "Deselect all students" : "Select all students"
+                }
                 className="w-4 h-4 rounded border-border-light accent-accent cursor-pointer"
               />
             </th>
-            <th scope="col" className="px-4 py-3 font-semibold text-text-secondary text-xs uppercase tracking-wider">
+            <th
+              scope="col"
+              className="px-4 py-3 font-semibold text-text-secondary text-xs uppercase tracking-wider"
+            >
               Student
             </th>
-            <th scope="col" className="px-4 py-3 font-semibold text-text-secondary text-xs uppercase tracking-wider">
+            <th
+              scope="col"
+              className="px-4 py-3 font-semibold text-text-secondary text-xs uppercase tracking-wider"
+            >
               Class
             </th>
-            <th scope="col" className="px-4 py-3 font-semibold text-text-secondary text-xs uppercase tracking-wider hidden xl:table-cell">
+            <th
+              scope="col"
+              className="px-4 py-3 font-semibold text-text-secondary text-xs uppercase tracking-wider hidden xl:table-cell"
+            >
               Guardian Phone
             </th>
-            <th scope="col" className="px-4 py-3 font-semibold text-text-secondary text-xs uppercase tracking-wider text-right">
+            <th
+              scope="col"
+              className="px-4 py-3 font-semibold text-text-secondary text-xs uppercase tracking-wider text-right"
+            >
               Balance
             </th>
-            <th scope="col" className="px-4 py-3 font-semibold text-text-secondary text-xs uppercase tracking-wider">
+            <th
+              scope="col"
+              className="px-4 py-3 font-semibold text-text-secondary text-xs uppercase tracking-wider"
+            >
               Status
             </th>
-            <th scope="col" className="px-4 py-3 font-semibold text-text-secondary text-xs uppercase tracking-wider text-right">
+            <th
+              scope="col"
+              className="px-4 py-3 font-semibold text-text-secondary text-xs uppercase tracking-wider text-right"
+            >
               Days Overdue
             </th>
           </tr>
@@ -67,18 +87,19 @@ export function StudentTable({
                 onClick={() => onRowClick(student)}
                 className={`
                   cursor-pointer transition-colors duration-100
-                  ${isSelected
-                    ? 'bg-accent/5 hover:bg-accent/10'
-                    : 'hover:bg-surface-hover'
+                  ${
+                    isSelected
+                      ? "bg-accent/5 hover:bg-accent/10"
+                      : "hover:bg-surface-hover"
                   }
                 `}
                 tabIndex={0}
                 role="row"
                 aria-selected={isSelected}
                 onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
+                  if (e.key === "Enter" || e.key === " ") {
                     e.preventDefault();
-                    if (e.key === ' ') {
+                    if (e.key === " ") {
                       onToggleSelect(student.id);
                     } else {
                       onRowClick(student);
@@ -100,10 +121,14 @@ export function StudentTable({
                   />
                 </td>
                 <td className="px-4 py-3">
-                  <div className="font-medium text-text-primary">{student.name}</div>
+                  <div className="font-medium text-text-primary">
+                    {student.name}
+                  </div>
                   {student.waiverInfo && (
                     <div className="text-xs text-violet-400 mt-0.5">
-                      {student.waiverInfo.waiverType} · {student.waiverInfo.owedComponent} Due {formatCurrency(student.waiverInfo.owedAmount)}
+                      {student.waiverInfo.waiverType} ·{" "}
+                      {student.waiverInfo.owedComponent} Due{" "}
+                      {formatCurrency(student.waiverInfo.owedAmount)}
                     </div>
                   )}
                 </td>
@@ -120,17 +145,30 @@ export function StudentTable({
                   </a>
                 </td>
                 <td className="px-4 py-3 text-right font-semibold">
-                  <span className={student.balance > 0 ? 'text-red-400' : student.balance < 0 ? 'text-sky-400' : 'text-emerald-400'}>
-                    {student.balance < 0 && '−'}
+                  <span
+                    className={
+                      student.balance > 0
+                        ? "text-red-400"
+                        : student.balance < 0
+                          ? "text-sky-400"
+                          : "text-emerald-400"
+                    }
+                  >
+                    {student.balance < 0 && "−"}
                     {formatCurrency(Math.abs(student.balance))}
                   </span>
                 </td>
                 <td className="px-4 py-3">
-                  <StatusBadge status={student.displayStatus} statusColor={student.statusColor} />
+                  <StatusBadge
+                    status={student.displayStatus}
+                    statusColor={student.statusColor}
+                  />
                 </td>
                 <td className="px-4 py-3 text-right text-text-secondary">
                   {student.daysOverdue > 0 ? (
-                    <span className="text-red-400 font-medium">{student.daysOverdue}d</span>
+                    <span className="text-red-400 font-medium">
+                      {student.daysOverdue}d
+                    </span>
                   ) : (
                     <span className="text-text-muted">—</span>
                   )}

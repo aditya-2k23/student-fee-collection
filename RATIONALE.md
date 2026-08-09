@@ -40,22 +40,24 @@ The following figures are derived directly from `fee-data.json` (24 students, as
 
 From opening the app to sending reminders to all Action Required students:
 
-| Step | Action | Clicks |
-|------|--------|--------|
-| 0 | App loads — already filtered to Action Required (15 students), sorted worst-first | 0 |
-| 1 | Click "Select all" checkbox in the table header | 1 |
-| 2 | Click "Send Reminders" in the bulk action bar | 2 |
-| 3 | Click "Send 15 Reminders" in the confirmation modal | 3 |
+| Step | Action                                                                            | Clicks |
+| ---- | --------------------------------------------------------------------------------- | ------ |
+| 0    | App loads — already filtered to Action Required (15 students), sorted worst-first | 0      |
+| 1    | Click "Select all" checkbox in the table header                                   | 1      |
+| 2    | Click "Send Reminders" in the bulk action bar                                     | 2      |
+| 3    | Click "Send 15 Reminders" in the confirmation modal                               | 3      |
 
 **Total: 3 clicks.** The flow was verified by clicking through in the running app — select all, send, confirm. The siblings correctly collapse to one guardian entry in the modal, so the button reads "Send 14 Reminders" (14 distinct families for 15 students, since the Fernandes family has two children). The number in the modal reflects families, not students — which is the right unit for messaging.
 
 ## Mobile trade-offs
 
 On viewports below 1024px, the table is replaced with cards. Each card shows:
+
 - Name, class, balance, days overdue, status badge
 - Tappable "Call" (`tel:` link) and "Message" (`sms:` link) quick actions
 
 **Dropped on mobile, deliberately:**
+
 - **Bulk selection and Send Reminders.** On a 375px screen in a school corridor, Lakshmi is looking up one family's details or making one phone call. Checkboxes and a floating action bar add clutter without matching that use case. Batch reminders are a desk task.
 - **Full fee component breakdown on the card face.** The drawer still opens on tap and shows the full breakdown — it is one tap away, not hidden. But the card itself shows only balance and status: enough to decide whether to call.
 

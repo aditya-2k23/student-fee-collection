@@ -1,5 +1,5 @@
-import { Send, Users } from 'lucide-react';
-import type { StudentViewModel } from '../data/types';
+import { Send, Users } from "lucide-react";
+import type { StudentViewModel } from "../data/types";
 
 interface BulkActionBarProps {
   selectedStudents: StudentViewModel[];
@@ -7,7 +7,11 @@ interface BulkActionBarProps {
   onClearSelection: () => void;
 }
 
-export function BulkActionBar({ selectedStudents, onSendReminders, onClearSelection }: BulkActionBarProps) {
+export function BulkActionBar({
+  selectedStudents,
+  onSendReminders,
+  onClearSelection,
+}: BulkActionBarProps) {
   // Count distinct families — siblings share a familyGroupId
   const familyIds = new Set(selectedStudents.map((s) => s.familyGroupId));
   const familyCount = familyIds.size;
@@ -20,10 +24,12 @@ export function BulkActionBar({ selectedStudents, onSendReminders, onClearSelect
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-2 text-sm text-text-primary">
               <Users className="w-4 h-4 text-accent" />
-              <span className="font-medium">{studentCount} student{studentCount > 1 ? 's' : ''}</span>
+              <span className="font-medium">
+                {studentCount} student{studentCount > 1 ? "s" : ""}
+              </span>
               {familyCount !== studentCount && (
                 <span className="text-text-muted">
-                  ({familyCount} {familyCount === 1 ? 'family' : 'families'})
+                  ({familyCount} {familyCount === 1 ? "family" : "families"})
                 </span>
               )}
             </div>

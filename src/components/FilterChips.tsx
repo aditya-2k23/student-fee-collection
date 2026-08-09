@@ -1,5 +1,5 @@
-import { Search } from 'lucide-react';
-import type { FilterKey, Summary } from '../data/types';
+import { Search } from "lucide-react";
+import type { FilterKey, Summary } from "../data/types";
 
 interface FilterChipsProps {
   activeFilter: FilterKey;
@@ -25,17 +25,29 @@ export function FilterChips({
   summary,
 }: FilterChipsProps) {
   const filters: FilterOption[] = [
-    { key: 'action-required', label: 'Action Required', count: summary.actionRequiredCount },
-    { key: 'paid', label: 'Paid', count: summary.paidCount },
-    { key: 'instalment-plan', label: 'Instalment Plan', count: summary.instalmentPlanCount },
-    { key: 'withdrawn', label: 'Withdrawn', count: summary.withdrawnCount },
-    { key: 'all', label: 'All', count: summary.totalStudents },
+    {
+      key: "action-required",
+      label: "Action Required",
+      count: summary.actionRequiredCount,
+    },
+    { key: "paid", label: "Paid", count: summary.paidCount },
+    {
+      key: "instalment-plan",
+      label: "Instalment Plan",
+      count: summary.instalmentPlanCount,
+    },
+    { key: "withdrawn", label: "Withdrawn", count: summary.withdrawnCount },
+    { key: "all", label: "All", count: summary.totalStudents },
   ];
 
   return (
     <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between">
       {/* Filter chips */}
-      <div className="flex flex-wrap gap-2" role="tablist" aria-label="Filter students by status">
+      <div
+        className="flex flex-wrap gap-2"
+        role="tablist"
+        aria-label="Filter students by status"
+      >
         {filters.map((f) => {
           const isActive = activeFilter === f.key;
           return (
@@ -48,9 +60,10 @@ export function FilterChips({
                 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium
                 transition-all duration-150 cursor-pointer
                 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent
-                ${isActive
-                  ? 'bg-accent/15 text-accent ring-1 ring-accent/30'
-                  : 'bg-surface-elevated text-text-secondary hover:text-text-primary hover:bg-surface-hover border border-border'
+                ${
+                  isActive
+                    ? "bg-accent/15 text-accent ring-1 ring-accent/30"
+                    : "bg-surface-elevated text-text-secondary hover:text-text-primary hover:bg-surface-hover border border-border"
                 }
               `}
             >
@@ -58,9 +71,10 @@ export function FilterChips({
               <span
                 className={`
                   text-xs px-1.5 py-0.5 rounded-full
-                  ${isActive
-                    ? 'bg-accent/20 text-accent'
-                    : 'bg-surface-hover text-text-muted'
+                  ${
+                    isActive
+                      ? "bg-accent/20 text-accent"
+                      : "bg-surface-hover text-text-muted"
                   }
                 `}
               >

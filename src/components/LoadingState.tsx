@@ -23,7 +23,11 @@ export function LoadingState() {
       {/* Filter skeleton */}
       <div className="flex gap-2">
         {[1, 2, 3, 4, 5].map((i) => (
-          <div key={i} className="skeleton h-9 rounded-lg" style={{ width: `${60 + i * 16}px` }} />
+          <div
+            key={i}
+            className="skeleton h-9 rounded-lg"
+            style={{ width: `${60 + i * 16}px` }}
+          />
         ))}
       </div>
 
@@ -31,7 +35,10 @@ export function LoadingState() {
       <div className="bg-surface-elevated border border-border rounded-xl overflow-hidden">
         <div className="h-10 bg-surface-hover border-b border-border" />
         {Array.from({ length: 8 }).map((_, i) => (
-          <div key={i} className="flex items-center gap-4 px-4 py-3 border-b border-border last:border-0">
+          <div
+            key={i}
+            className="flex items-center gap-4 px-4 py-3 border-b border-border last:border-0"
+          >
             <div className="skeleton h-4 w-4 rounded" />
             <div className="skeleton h-4 flex-1 max-w-40" />
             <div className="skeleton h-4 w-12" />

@@ -1,8 +1,21 @@
-import { useEffect, useRef } from 'react';
-import { X, Phone, Mail, FileText, AlertCircle, Calendar, CreditCard } from 'lucide-react';
-import { StatusBadge } from './StatusBadge';
-import type { StudentViewModel } from '../data/types';
-import { formatCurrency, formatDate, formatDateTime, formatPhone } from '../utils/format';
+import { useEffect, useRef } from "react";
+import {
+  X,
+  Phone,
+  Mail,
+  FileText,
+  AlertCircle,
+  Calendar,
+  CreditCard,
+} from "lucide-react";
+import { StatusBadge } from "./StatusBadge";
+import type { StudentViewModel } from "../data/types";
+import {
+  formatCurrency,
+  formatDate,
+  formatDateTime,
+  formatPhone,
+} from "../utils/format";
 
 interface DetailDrawerProps {
   student: StudentViewModel;
@@ -15,15 +28,15 @@ export function DetailDrawer({ student, onClose }: DetailDrawerProps) {
   // Focus trap and Esc handling
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
+      if (e.key === "Escape") {
         onClose();
         return;
       }
 
       // Simple focus trap
-      if (e.key === 'Tab' && drawerRef.current) {
+      if (e.key === "Tab" && drawerRef.current) {
         const focusable = drawerRef.current.querySelectorAll<HTMLElement>(
-          'button, a, input, [tabindex]:not([tabindex="-1"])'
+          'button, a, input, [tabindex]:not([tabindex="-1"])',
         );
         if (focusable.length === 0) return;
 
@@ -40,17 +53,17 @@ export function DetailDrawer({ student, onClose }: DetailDrawerProps) {
       }
     };
 
-    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener("keydown", handleKeyDown);
     // Focus the close button on mount
-    const closeBtn = drawerRef.current?.querySelector<HTMLElement>('button');
+    const closeBtn = drawerRef.current?.querySelector<HTMLElement>("button");
     closeBtn?.focus();
 
     // Prevent body scroll
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
 
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = '';
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
     };
   }, [onClose]);
 
@@ -74,7 +87,9 @@ export function DetailDrawer({ student, onClose }: DetailDrawerProps) {
         {/* Header */}
         <div className="sticky top-0 bg-surface-elevated/95 backdrop-blur-sm border-b border-border px-6 py-4 flex items-center justify-between z-10">
           <div>
-            <h2 className="text-lg font-semibold text-text-primary">{student.name}</h2>
+            <h2 className="text-lg font-semibold text-text-primary">
+              {student.name}
+            </h2>
             <p className="text-sm text-text-secondary">
               Class {student.class}-{student.section} · Roll #{student.rollNo}
             </p>
@@ -91,9 +106,14 @@ export function DetailDrawer({ student, onClose }: DetailDrawerProps) {
         <div className="px-6 py-5 space-y-6">
           {/* Status + summary */}
           <div className="flex items-center justify-between">
-            <StatusBadge status={student.displayStatus} statusColor={student.statusColor} />
+            <StatusBadge
+              status={student.displayStatus}
+              statusColor={student.statusColor}
+            />
             {student.daysOverdue > 0 && (
-              <span className="text-sm text-red-400 font-medium">{student.daysOverdue} days overdue</span>
+              <span className="text-sm text-red-400 font-medium">
+                {student.daysOverdue} days overdue
+              </span>
             )}
           </div>
 
@@ -105,7 +125,8 @@ export function DetailDrawer({ student, onClose }: DetailDrawerProps) {
                 {student.waiverInfo.waiverType}
               </div>
               <p className="text-sm text-text-secondary">
-                {student.waiverInfo.owedComponent} due: {formatCurrency(student.waiverInfo.owedAmount)}
+                {student.waiverInfo.owedComponent} due:{" "}
+                {formatCurrency(student.waiverInfo.owedAmount)}
               </p>
             </div>
           )}
@@ -151,9 +172,12 @@ export function DetailDrawer({ student, onClose }: DetailDrawerProps) {
             )}
             {student.remindersSent > 0 && (
               <div className="text-xs text-text-muted mt-1">
-                {student.remindersSent} reminder{student.remindersSent > 1 ? 's' : ''} sent
-                {student.lastReminderAt && <> · Last: {formatDateTime(student.lastReminderAt)}</>}
-                {student.reminderDeliveryStatus?.toUpperCase() === 'FAILED' && (
+                {student.remindersSent} reminder
+                {student.remindersSent > 1 ? "s" : ""} sent
+                {student.lastReminderAt && (
+                  <> · Last: {formatDateTime(student.lastReminderAt)}</>
+                )}
+                {student.reminderDeliveryStatus?.toUpperCase() === "FAILED" && (
                   <span className="text-red-400 ml-1">(delivery failed)</span>
                 )}
               </div>
@@ -166,10 +190,30 @@ export function DetailDrawer({ student, onClose }: DetailDrawerProps) {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="bg-surface-hover text-left">
-                    <th scope="col" className="px-3 py-2 font-medium text-text-secondary text-xs">Component</th>
-                    <th scope="col" className="px-3 py-2 font-medium text-text-secondary text-xs text-right">Billed</th>
-                    <th scope="col" className="px-3 py-2 font-medium text-text-secondary text-xs text-right">Paid</th>
-                    <th scope="col" className="px-3 py-2 font-medium text-text-secondary text-xs text-right">Due</th>
+                    <th
+                      scope="col"
+                      className="px-3 py-2 font-medium text-text-secondary text-xs"
+                    >
+                      Component
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-3 py-2 font-medium text-text-secondary text-xs text-right"
+                    >
+                      Billed
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-3 py-2 font-medium text-text-secondary text-xs text-right"
+                    >
+                      Paid
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-3 py-2 font-medium text-text-secondary text-xs text-right"
+                    >
+                      Due
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border">
@@ -178,16 +222,28 @@ export function DetailDrawer({ student, onClose }: DetailDrawerProps) {
                       <td className="px-3 py-2 text-text-primary">
                         {comp.type}
                         {comp.waiver && (
-                          <span className="ml-2 text-xs text-violet-400">({comp.waiver.type})</span>
+                          <span className="ml-2 text-xs text-violet-400">
+                            ({comp.waiver.type})
+                          </span>
                         )}
                       </td>
-                      <td className="px-3 py-2 text-right text-text-secondary">{formatCurrency(comp.billed)}</td>
-                      <td className="px-3 py-2 text-right text-text-secondary">{formatCurrency(comp.paid)}</td>
+                      <td className="px-3 py-2 text-right text-text-secondary">
+                        {formatCurrency(comp.billed)}
+                      </td>
+                      <td className="px-3 py-2 text-right text-text-secondary">
+                        {formatCurrency(comp.paid)}
+                      </td>
                       <td className="px-3 py-2 text-right font-medium">
                         {comp.waiver ? (
                           <span className="text-violet-400">Waived</span>
                         ) : (
-                          <span className={comp.billed - comp.paid > 0 ? 'text-red-400' : 'text-emerald-400'}>
+                          <span
+                            className={
+                              comp.billed - comp.paid > 0
+                                ? "text-red-400"
+                                : "text-emerald-400"
+                            }
+                          >
                             {formatCurrency(comp.billed - comp.paid)}
                           </span>
                         )}
@@ -198,11 +254,24 @@ export function DetailDrawer({ student, onClose }: DetailDrawerProps) {
                 <tfoot>
                   <tr className="bg-surface-hover font-semibold">
                     <td className="px-3 py-2 text-text-primary">Total</td>
-                    <td className="px-3 py-2 text-right text-text-secondary">{formatCurrency(student.totalBilled)}</td>
-                    <td className="px-3 py-2 text-right text-text-secondary">{formatCurrency(student.totalPaid)}</td>
+                    <td className="px-3 py-2 text-right text-text-secondary">
+                      {formatCurrency(student.totalBilled)}
+                    </td>
+                    <td className="px-3 py-2 text-right text-text-secondary">
+                      {formatCurrency(student.totalPaid)}
+                    </td>
                     <td className="px-3 py-2 text-right">
-                      <span className={student.balance > 0 ? 'text-red-400' : student.balance < 0 ? 'text-sky-400' : 'text-emerald-400'}>
-                        {student.balance < 0 && '−'}{formatCurrency(Math.abs(student.balance))}
+                      <span
+                        className={
+                          student.balance > 0
+                            ? "text-red-400"
+                            : student.balance < 0
+                              ? "text-sky-400"
+                              : "text-emerald-400"
+                        }
+                      >
+                        {student.balance < 0 && "−"}
+                        {formatCurrency(Math.abs(student.balance))}
                       </span>
                     </td>
                   </tr>
@@ -219,7 +288,8 @@ export function DetailDrawer({ student, onClose }: DetailDrawerProps) {
                 Next Instalment
               </div>
               <p className="text-sm text-text-secondary">
-                {formatCurrency(student.nextInstalmentAmount)} due on {formatDate(student.nextInstalmentDate)}
+                {formatCurrency(student.nextInstalmentAmount)} due on{" "}
+                {formatDate(student.nextInstalmentDate)}
               </p>
             </div>
           )}
@@ -230,7 +300,13 @@ export function DetailDrawer({ student, onClose }: DetailDrawerProps) {
               <p className="text-sm text-text-secondary">
                 Withdrawn on {formatDate(student.withdrawnOn)}
                 {student.refundDue && student.refundDue > 0 && (
-                  <> · Refund due: <span className="text-amber-400 font-medium">{formatCurrency(student.refundDue)}</span></>
+                  <>
+                    {" "}
+                    · Refund due:{" "}
+                    <span className="text-amber-400 font-medium">
+                      {formatCurrency(student.refundDue)}
+                    </span>
+                  </>
                 )}
               </p>
             </div>
@@ -239,31 +315,41 @@ export function DetailDrawer({ student, onClose }: DetailDrawerProps) {
           {/* Payment history */}
           <Section title="Payment History">
             {student.payments.length === 0 ? (
-              <p className="text-sm text-text-muted py-3">No payments recorded.</p>
+              <p className="text-sm text-text-muted py-3">
+                No payments recorded.
+              </p>
             ) : (
               <div className="space-y-2">
                 {student.payments.map((payment, i) => {
-                  const isFailed = payment.status === 'BOUNCED' || payment.status === 'FAILED';
+                  const isFailed =
+                    payment.status === "BOUNCED" || payment.status === "FAILED";
                   return (
                     <div
                       key={`${payment.reference}-${i}`}
                       className={`
                         flex items-center justify-between p-3 rounded-lg border
-                        ${isFailed
-                          ? 'border-red-500/20 bg-red-500/5'
-                          : 'border-border bg-surface-hover/50'
+                        ${
+                          isFailed
+                            ? "border-red-500/20 bg-red-500/5"
+                            : "border-border bg-surface-hover/50"
                         }
                       `}
                     >
                       <div>
                         <div className="flex items-center gap-2">
-                          <CreditCard className={`w-4 h-4 ${isFailed ? 'text-red-400' : 'text-text-muted'}`} />
-                          <span className={`text-sm font-medium ${isFailed ? 'text-red-400' : 'text-text-primary'}`}>
+                          <CreditCard
+                            className={`w-4 h-4 ${isFailed ? "text-red-400" : "text-text-muted"}`}
+                          />
+                          <span
+                            className={`text-sm font-medium ${isFailed ? "text-red-400" : "text-text-primary"}`}
+                          >
                             {formatCurrency(payment.amount)}
                           </span>
                           {isFailed && (
                             <span className="text-xs px-1.5 py-0.5 rounded bg-red-500/15 text-red-400 font-medium">
-                              {payment.status === 'BOUNCED' ? 'Bounced' : 'Failed'}
+                              {payment.status === "BOUNCED"
+                                ? "Bounced"
+                                : "Failed"}
                             </span>
                           )}
                         </div>
@@ -288,10 +374,18 @@ export function DetailDrawer({ student, onClose }: DetailDrawerProps) {
 
 // ─── Helpers ───
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+function Section({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
   return (
     <div>
-      <h3 className="text-xs font-semibold text-text-muted uppercase tracking-wider mb-3">{title}</h3>
+      <h3 className="text-xs font-semibold text-text-muted uppercase tracking-wider mb-3">
+        {title}
+      </h3>
       {children}
     </div>
   );

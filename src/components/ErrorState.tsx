@@ -1,4 +1,4 @@
-import { AlertTriangle, RefreshCw } from 'lucide-react';
+import { AlertTriangle, RefreshCw } from "lucide-react";
 
 interface ErrorStateProps {
   message: string;
@@ -11,7 +11,9 @@ export function ErrorState({ message, onRetry }: ErrorStateProps) {
       <div className="w-16 h-16 rounded-full bg-red-500/10 flex items-center justify-center mb-4">
         <AlertTriangle className="w-8 h-8 text-red-400" />
       </div>
-      <h2 className="text-lg font-semibold text-text-primary mb-2">Something went wrong</h2>
+      <h2 className="text-lg font-semibold text-text-primary mb-2">
+        Something went wrong
+      </h2>
       <p className="text-sm text-text-secondary mb-6 text-center max-w-sm">
         {message}
       </p>

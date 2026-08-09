@@ -4,18 +4,18 @@ import type {
   DisplayStatus,
   WaiverInfo,
   Summary,
-} from './types';
+} from "./types";
 
 // ─── Status mapping ───
 
-const STATUS_LABEL_MAP: Record<RawStudent['status'], DisplayStatus> = {
-  OVERDUE: 'Overdue',
-  PARTIALLY_PAID: 'Partially Paid',
-  PAID: 'Paid',
-  CREDIT_BALANCE: 'Advance',
-  PAYMENT_FAILED: 'Cheque Bounced',
-  INSTALMENT_PLAN: 'Instalment Plan',
-  WITHDRAWN: 'Withdrawn',
+const STATUS_LABEL_MAP: Record<RawStudent["status"], DisplayStatus> = {
+  OVERDUE: "Overdue",
+  PARTIALLY_PAID: "Partially Paid",
+  PAID: "Paid",
+  CREDIT_BALANCE: "Advance",
+  PAYMENT_FAILED: "Cheque Bounced",
+  INSTALMENT_PLAN: "Instalment Plan",
+  WITHDRAWN: "Withdrawn",
 };
 
 /**
@@ -25,19 +25,19 @@ const STATUS_LABEL_MAP: Record<RawStudent['status'], DisplayStatus> = {
  * needs to see full class names to include them in the bundle).
  */
 const STATUS_COLOR_MAP: Record<DisplayStatus, string> = {
-  'Overdue': 'red',
-  'Partially Paid': 'amber',
-  'Paid': 'emerald',
-  'Advance': 'sky',
-  'Cheque Bounced': 'rose',
-  'Instalment Plan': 'violet',
-  'Withdrawn': 'slate',
+  Overdue: "red",
+  "Partially Paid": "amber",
+  Paid: "emerald",
+  Advance: "sky",
+  "Cheque Bounced": "rose",
+  "Instalment Plan": "violet",
+  Withdrawn: "slate",
 };
 
-const ACTION_REQUIRED_STATUSES: Set<RawStudent['status']> = new Set([
-  'OVERDUE',
-  'PARTIALLY_PAID',
-  'PAYMENT_FAILED',
+const ACTION_REQUIRED_STATUSES: Set<RawStudent["status"]> = new Set([
+  "OVERDUE",
+  "PARTIALLY_PAID",
+  "PAYMENT_FAILED",
 ]);
 
 // ─── Waiver detection ───
@@ -48,7 +48,7 @@ function detectWaiver(student: RawStudent): WaiverInfo | null {
 
   // Find the component(s) without a waiver that still have a balance
   const owedComponents = student.components.filter(
-    (c) => !c.waiver && c.billed - c.paid > 0
+    (c) => !c.waiver && c.billed - c.paid > 0,
   );
 
   if (owedComponents.length === 0) return null;
@@ -67,16 +67,15 @@ function detectWaiver(student: RawStudent): WaiverInfo | null {
   // Multiple non-waived components still owed — summarize
   const totalOwed = owedComponents.reduce(
     (sum, c) => sum + (c.billed - c.paid),
-    0
+    0,
   );
-  const names = owedComponents.map((c) => c.type).join(' + ');
+  const names = owedComponents.map((c) => c.type).join(" + ");
   return {
     waiverType,
     owedComponent: names,
     owedAmount: totalOwed,
   };
 }
-
 
 // ─── Main transform ───
 
@@ -164,9 +163,9 @@ export function computeSummary(students: StudentViewModel[]): Summary {
     }
 
     if (s.isActionRequired) actionRequiredCount++;
-    if (s.rawStatus === 'PAID') paidCount++;
-    if (s.rawStatus === 'INSTALMENT_PLAN') instalmentPlanCount++;
-    if (s.rawStatus === 'WITHDRAWN') withdrawnCount++;
+    if (s.rawStatus === "PAID") paidCount++;
+    if (s.rawStatus === "INSTALMENT_PLAN") instalmentPlanCount++;
+    if (s.rawStatus === "WITHDRAWN") withdrawnCount++;
   }
 
   return {

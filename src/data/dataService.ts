@@ -1,5 +1,5 @@
-import type { FeeData } from './types';
-import feeDataJson from './fee-data.json';
+import type { FeeData } from "./types";
+import feeDataJson from "./fee-data.json";
 
 const LOAD_DELAY_MS = 1200;
 
@@ -11,12 +11,16 @@ const LOAD_DELAY_MS = 1200;
  */
 export async function fetchFeeData(): Promise<FeeData> {
   const params = new URLSearchParams(window.location.search);
-  const forceError = params.get('error') === '1';
+  const forceError = params.get("error") === "1";
 
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (forceError) {
-        reject(new Error('Simulated network error — add ?error=1 to the URL to toggle this.'));
+        reject(
+          new Error(
+            "Simulated network error — add ?error=1 to the URL to toggle this.",
+          ),
+        );
       } else {
         resolve(feeDataJson as FeeData);
       }
