@@ -25,3 +25,6 @@ dist-ssr
 
 # Ignore Git Commit Genie data
 .gitgenie/**
+
+# Interview Prep Artifact
+INTERVIEW_PREP.md

@@ -4,7 +4,7 @@
 
 **Promoted to the top:** Total Outstanding — this is the number Lakshmi needs to quote if her principal asks "how much are we short?" It is the single largest piece of text on the screen, set in bold at display scale, anchored top-left where the eye lands first. Action Required count sits next to it, answering "how much work do I have today?" The data-as-of timestamp is always visible because this is a snapshot, not live data — Lakshmi should never mistake a previous evening's export for today's reality.
 
-**Promoted in the default view:** The table opens pre-filtered to Action Required and pre-sorted by priority score (days overdue descending, then balance descending as a tiebreaker). This means the student who has owed the most for the longest is row 1. Lakshmi never needs to filter or sort to start her day.
+**Promoted in the default view:** The table opens pre-filtered to Action Required and pre-sorted by priority score (days overdue descending, then balance descending as a tiebreaker). This means the student who has owed the most for the longest is row 1. Lakshmi never needs to filter or sort to start her day. However, for specific operational tasks, an explicit Sort dropdown control sits directly beside the search bar, offering Name (A–Z), Balance (High to Low / Low to High), Days Overdue, and Last Payment Date while keeping Priority as the initial default.
 
 **Demoted:** Admission number, email address, and the full fee component breakdown are pushed into the detail drawer. They matter when you are on the phone with a parent, not when scanning down a list. Guardian phone stays in the table because Lakshmi's most common action from the list view is dialling.
 
@@ -49,9 +49,11 @@ From opening the app to sending reminders to all Action Required students:
 
 **Total: 3 clicks.** The flow was verified by clicking through in the running app — select all, send, confirm. The siblings correctly collapse to one guardian entry in the modal, so the button reads "Send 14 Reminders" (14 distinct families for 15 students, since the Fernandes family has two children). The number in the modal reflects families, not students — which is the right unit for messaging.
 
-## Mobile trade-offs
+## Mobile and tablet trade-offs
 
-On viewports below 1024px, the table is replaced with cards. Each card shows:
+On viewports below 768px (phones), the table is replaced with cards. On tablet screens (768px–1023px), the application deliberately retains the table format with secondary columns (Class, Guardian Phone) hidden, preserving the core ledger grid experience where horizontal space permits.
+
+On phone cards (below 768px), each card shows:
 
 - Name, class, balance, days overdue, status badge
 - Tappable "Call" (`tel:` link) and "Message" (`sms:` link) quick actions
@@ -72,3 +74,13 @@ This is a deliberate trade-off: mobile optimises for "look up one student, call 
 3. The filter + sort already surfaces worst cases immediately in the table. A chart would add visual weight without changing what Lakshmi does next — she still opens the table and starts calling.
 
 The summary bar (total outstanding + action required count + data timestamp) carries sufficient signal for the "how bad is today?" question. Class-level analytics, if ever needed, belong in a separate reporting view, not bolted onto this operational screen.
+
+## Visual craft and design identity
+
+**Moving beyond generic AI dashboard defaults:** Rather than relying on standard dark-slate glassy cards, glowing pill badges, and single indigo accents, the visual language draws inspiration from physical school record registers and official ledger accounting books.
+
+- **Ledger Aesthetics & Alignment:** Typography pairs structural sans-serif headers (`Plus Jakarta Sans`) with crisp monospace numerics (`JetBrains Mono` with `tabular-nums`) to ensure financial figures align perfectly down every column. Left-margin index tab borders mimic physical paper ledger section dividers.
+- **Dual Theme System:**
+  - _Light Register:_ Modeled after an official printed paper ledger with cream/slate paper tones and deep blue-black ink (`#0f172a`).
+  - _Dark Register:_ Modeled after a midnight ledger desk with deep navy surfaces (`#0b0f17`) and cool blue index-rule accents.
+- **Considered Color & Contrast:** Overdue status stamps avoid harsh neon red; light mode uses a soft brick/rose hue (`#be123c`) for WCAG AA compliance without feeling overly alarming. Severe overdue records (> 30 days) receive a subtle weight bump (`font-extrabold`) to draw visual priority naturally within the existing palette.
