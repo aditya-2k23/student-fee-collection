@@ -43,7 +43,7 @@ export function StudentTable({
             <th scope="col" className="px-4 py-2.5">
               Student / Admission
             </th>
-            <th scope="col" className="px-4 py-2.5">
+            <th scope="col" className="px-4 py-2.5 hidden lg:table-cell">
               Class
             </th>
             <th scope="col" className="px-4 py-2.5 hidden xl:table-cell">
@@ -67,7 +67,7 @@ export function StudentTable({
             // Left Margin Ledger Index Tab border calculation
             let tabBorderClass = "border-l-4 border-l-transparent";
             if (student.statusColor === "red" || student.statusColor === "rose") {
-              tabBorderClass = "border-l-4 border-l-red-600 dark:border-l-red-500";
+              tabBorderClass = "border-l-4 border-l-rose-500/80 dark:border-l-red-500/80";
             } else if (student.statusColor === "amber") {
               tabBorderClass = "border-l-4 border-l-amber-600 dark:border-l-amber-500";
             } else if (student.statusColor === "sky" || student.statusColor === "violet") {
@@ -132,7 +132,7 @@ export function StudentTable({
                     </div>
                   )}
                 </td>
-                <td className="px-4 py-3 text-text-secondary font-mono text-xs font-medium">
+                <td className="px-4 py-3 text-text-secondary hidden lg:table-cell font-mono text-xs font-medium">
                   {student.class}-{student.section}
                 </td>
                 <td className="px-4 py-3 text-text-secondary hidden xl:table-cell font-mono text-xs">
@@ -144,14 +144,16 @@ export function StudentTable({
                     {formatPhone(student.guardian.phone)}
                   </a>
                 </td>
-                <td className="px-4 py-3 text-right font-mono font-bold text-sm tabular-nums">
+                <td className="px-4 py-3 text-right font-mono text-sm tabular-nums">
                   <span
                     className={
                       student.balance > 0
-                        ? "text-red-700 dark:text-red-400"
+                        ? student.daysOverdue > 30
+                          ? "text-rose-700 dark:text-red-500 font-extrabold"
+                          : "text-rose-600 dark:text-red-400 font-bold"
                         : student.balance < 0
-                          ? "text-blue-700 dark:text-blue-400"
-                          : "text-emerald-700 dark:text-emerald-400"
+                          ? "text-blue-700 dark:text-blue-400 font-bold"
+                          : "text-emerald-700 dark:text-emerald-400 font-bold"
                     }
                   >
                     {student.balance < 0 && "−"}
@@ -166,7 +168,7 @@ export function StudentTable({
                 </td>
                 <td className="px-4 py-3 text-right font-mono text-xs tabular-nums">
                   {student.daysOverdue > 0 ? (
-                    <span className="text-red-700 dark:text-red-400 font-bold">
+                    <span className={student.daysOverdue > 30 ? "text-rose-700 dark:text-red-500 font-extrabold" : "text-rose-600 dark:text-red-400 font-bold"}>
                       {student.daysOverdue}d
                     </span>
                   ) : (

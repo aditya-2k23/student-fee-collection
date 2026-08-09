@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* ─── School Ledger Theme Design Tokens ─── */
 :root {
   /* Light Theme ("Official Register & Deep Ink") */
@@ -22,10 +24,10 @@
   --accent-ledger-bg: #dbeafe;
   --accent-ledger-text: #ffffff;
 
-  /* Status Ink Colors - Light Mode */
-  --stamp-red-text: #991b1b;
-  --stamp-red-bg: #fef2f2;
-  --stamp-red-border: #fca5a5;
+  /* Status Ink Colors - Light Mode (Softer Red/Rose) */
+  --stamp-red-text: #be123c;
+  --stamp-red-bg: #fff1f2;
+  --stamp-red-border: #fda4af;
 
   --stamp-amber-text: #92400e;
   --stamp-amber-bg: #fffbeb;

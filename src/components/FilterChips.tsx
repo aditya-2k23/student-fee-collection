@@ -1,9 +1,11 @@
-import { Search } from "lucide-react";
-import type { FilterKey, Summary } from "../data/types";
+import { Search, ArrowUpDown } from "lucide-react";
+import type { FilterKey, SortKey, Summary } from "../data/types";
 
 interface FilterChipsProps {
   activeFilter: FilterKey;
   onFilterChange: (filter: FilterKey) => void;
+  activeSort: SortKey;
+  onSortChange: (sort: SortKey) => void;
   searchQuery: string;
   onSearchChange: (query: string) => void;
   searchInputRef: React.RefObject<HTMLInputElement | null>;
@@ -19,12 +21,15 @@ interface FilterOption {
 export function FilterChips({
   activeFilter,
   onFilterChange,
+  activeSort,
+  onSortChange,
   searchQuery,
   onSearchChange,
   searchInputRef,
   summary,
 }: FilterChipsProps) {
   const filters: FilterOption[] = [
+    { key: "all", label: "All", count: summary.totalStudents },
     {
       key: "action-required",
       label: "Action Required",
@@ -37,11 +42,10 @@ export function FilterChips({
       count: summary.instalmentPlanCount,
     },
     { key: "withdrawn", label: "Withdrawn", count: summary.withdrawnCount },
-    { key: "all", label: "All", count: summary.totalStudents },
   ];
 
   return (
-    <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between">
+    <div className="flex flex-col md:flex-row gap-3 items-start md:items-center justify-between">
       {/* Ledger Register Filter Tabs */}
       <div
         className="flex flex-wrap gap-1.5 p-1 bg-surface-elevated border border-border rounded-md shadow-2xs"
@@ -84,10 +88,40 @@ export function FilterChips({
         })}
       </div>
 
-      {/* Search Input */}
-      <div className="relative w-full sm:w-64">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted pointer-events-none" />
-        <input
+      {/* Controls Container */}
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full md:w-auto">
+        {/* Sort Control */}
+        <div className="relative w-full sm:w-auto">
+          <label htmlFor="sort-select" className="sr-only">Sort by</label>
+          <select
+            id="sort-select"
+            value={activeSort}
+            onChange={(e) => onSortChange(e.target.value as SortKey)}
+            className="
+              appearance-none w-full sm:w-auto pl-9 pr-8 py-1.5 rounded-md text-xs font-semibold
+              bg-surface-elevated border border-border text-text-primary
+              focus:outline-none focus:border-accent cursor-pointer transition-colors
+            "
+          >
+            <option value="priority">Sort: Priority</option>
+            <option value="name-asc">Sort: Name (A-Z)</option>
+            <option value="balance-desc">Sort: Balance (High-Low)</option>
+            <option value="balance-asc">Sort: Balance (Low-High)</option>
+            <option value="overdue-desc">Sort: Days Overdue</option>
+            <option value="last-payment-desc">Sort: Last Payment</option>
+          </select>
+          <ArrowUpDown className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted pointer-events-none" />
+          <div className="absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none">
+            <svg className="w-3 h-3 text-text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
+        </div>
+
+        {/* Search Input */}
+        <div className="relative w-full sm:w-64">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted pointer-events-none" />
+          <input
           ref={searchInputRef}
           type="search"
           placeholder="Search name, ID (press '/')"
@@ -107,6 +141,7 @@ export function FilterChips({
             /
           </kbd>
         )}
+        </div>
       </div>
     </div>
   );

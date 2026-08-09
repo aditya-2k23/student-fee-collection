@@ -4,6 +4,7 @@ import type {
   FeeData,
   StudentViewModel,
   FilterKey,
+  SortKey,
   Meta,
   Summary,
 } from "./data/types";
@@ -73,6 +74,7 @@ export default function App() {
   // ─── UI state ───
   const [activeFilter, setActiveFilter] =
     useState<FilterKey>("action-required");
+  const [activeSort, setActiveSort] = useState<SortKey>("priority");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [drawerStudent, setDrawerStudent] = useState<StudentViewModel | null>(
@@ -81,7 +83,7 @@ export default function App() {
   const [showReminderModal, setShowReminderModal] = useState(false);
 
   const searchInputRef = useRef<HTMLInputElement>(null);
-  const isDesktop = useMediaQuery("(min-width: 1024px)");
+  const isTabletOrDesktop = useMediaQuery("(min-width: 768px)");
 
   // ─── Data fetching ───
   const loadData = useCallback(() => {
@@ -178,12 +180,36 @@ export default function App() {
       );
     }
 
+    // Apply sort
+    filtered.sort((a, b) => {
+      switch (activeSort) {
+        case "priority":
+          return b.priorityScore - a.priorityScore;
+        case "name-asc":
+          return a.name.localeCompare(b.name);
+        case "balance-desc":
+          return b.balance - a.balance;
+        case "balance-asc":
+          return a.balance - b.balance;
+        case "overdue-desc":
+          return b.daysOverdue - a.daysOverdue;
+        case "last-payment-desc": {
+          if (!a.lastPaymentDate && !b.lastPaymentDate) return 0;
+          if (!a.lastPaymentDate) return 1;
+          if (!b.lastPaymentDate) return -1;
+          return new Date(b.lastPaymentDate).getTime() - new Date(a.lastPaymentDate).getTime();
+        }
+        default:
+          return 0;
+      }
+    });
+
     return {
       meta: appState.data.meta,
       summary: summaryResult,
       filteredStudents: filtered,
     };
-  }, [appState, activeFilter, searchQuery]);
+  }, [appState, activeFilter, activeSort, searchQuery]);
 
   // ─── Selection handlers ───
   const handleToggleSelect = useCallback((id: string) => {
@@ -315,6 +341,8 @@ export default function App() {
                 // Clear selection when changing filters to avoid confusion
                 setSelectedIds(new Set());
               }}
+              activeSort={activeSort}
+              onSortChange={setActiveSort}
               searchQuery={searchQuery}
               onSearchChange={setSearchQuery}
               searchInputRef={searchInputRef}
@@ -323,7 +351,7 @@ export default function App() {
 
             {filteredStudents.length === 0 ? (
               <EmptyState filter={activeFilter} />
-            ) : isDesktop ? (
+            ) : isTabletOrDesktop ? (
               <StudentTable
                 students={filteredStudents}
                 selectedIds={selectedIds}

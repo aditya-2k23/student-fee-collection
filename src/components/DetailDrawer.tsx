@@ -113,7 +113,7 @@ export function DetailDrawer({ student, onClose }: DetailDrawerProps) {
               statusColor={student.statusColor}
             />
             {student.daysOverdue > 0 && (
-              <span className="text-xs font-mono font-bold text-red-700 dark:text-red-400">
+              <span className={`text-xs font-mono tabular-nums ${student.daysOverdue > 30 ? "text-rose-700 dark:text-red-500 font-extrabold" : "text-rose-600 dark:text-red-400 font-bold"}`}>
                 {student.daysOverdue} DAYS OVERDUE
               </span>
             )}
@@ -234,8 +234,8 @@ export function DetailDrawer({ student, onClose }: DetailDrawerProps) {
                           <span
                             className={
                               comp.billed - comp.paid > 0
-                                ? "text-red-700 dark:text-red-400"
-                                : "text-emerald-700 dark:text-emerald-400"
+                                ? student.daysOverdue > 30 ? "text-rose-700 dark:text-red-500 font-extrabold" : "text-rose-600 dark:text-red-400 font-bold"
+                                : "text-emerald-700 dark:text-emerald-400 font-bold"
                             }
                           >
                             {formatCurrency(comp.billed - comp.paid)}
@@ -258,10 +258,10 @@ export function DetailDrawer({ student, onClose }: DetailDrawerProps) {
                       <span
                         className={
                           student.balance > 0
-                            ? "text-red-700 dark:text-red-400"
+                            ? student.daysOverdue > 30 ? "text-rose-700 dark:text-red-500 font-extrabold" : "text-rose-600 dark:text-red-400 font-bold"
                             : student.balance < 0
-                              ? "text-blue-700 dark:text-blue-400"
-                              : "text-emerald-700 dark:text-emerald-400"
+                              ? "text-blue-700 dark:text-blue-400 font-bold"
+                              : "text-emerald-700 dark:text-emerald-400 font-bold"
                         }
                       >
                         {student.balance < 0 && "−"}

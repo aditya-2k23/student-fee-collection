@@ -12,7 +12,7 @@ export function StudentCard({ student, onTap }: StudentCardProps) {
   // Left Margin Ledger Index Tab border calculation
   let tabBorderClass = "border-l-4 border-l-transparent";
   if (student.statusColor === "red" || student.statusColor === "rose") {
-    tabBorderClass = "border-l-4 border-l-red-600 dark:border-l-red-500";
+    tabBorderClass = "border-l-4 border-l-rose-500/80 dark:border-l-red-500/80";
   } else if (student.statusColor === "amber") {
     tabBorderClass = "border-l-4 border-l-amber-600 dark:border-l-amber-500";
   } else if (student.statusColor === "sky" || student.statusColor === "violet") {
@@ -68,12 +68,14 @@ export function StudentCard({ student, onTap }: StudentCardProps) {
             Balance
           </div>
           <div
-            className={`text-lg font-bold font-mono tabular-nums ${
+            className={`text-lg font-mono tabular-nums ${
               student.balance > 0
-                ? "text-red-700 dark:text-red-400"
+                ? student.daysOverdue > 30
+                  ? "text-rose-700 dark:text-red-500 font-extrabold"
+                  : "text-rose-600 dark:text-red-400 font-bold"
                 : student.balance < 0
-                  ? "text-blue-700 dark:text-blue-400"
-                  : "text-emerald-700 dark:text-emerald-400"
+                  ? "text-blue-700 dark:text-blue-400 font-bold"
+                  : "text-emerald-700 dark:text-emerald-400 font-bold"
             }`}
           >
             {student.balance < 0 && "−"}
@@ -85,7 +87,7 @@ export function StudentCard({ student, onTap }: StudentCardProps) {
             <div className="text-[11px] font-mono text-text-muted uppercase tracking-wider">
               Overdue
             </div>
-            <div className="text-lg font-bold font-mono text-red-700 dark:text-red-400 tabular-nums">
+            <div className={`text-lg font-mono tabular-nums ${student.daysOverdue > 30 ? "text-rose-700 dark:text-red-500 font-extrabold" : "text-rose-600 dark:text-red-400 font-bold"}`}>
               {student.daysOverdue}d
             </div>
           </div>

@@ -95,6 +95,14 @@ export type FilterKey =
   | "withdrawn"
   | "all";
 
+export type SortKey =
+  | "priority"
+  | "name-asc"
+  | "balance-desc"
+  | "balance-asc"
+  | "overdue-desc"
+  | "last-payment-desc";
+
 export interface WaiverInfo {
   waiverType: string;
   owedComponent: string;
