@@ -1,32 +1,31 @@
-# React + TypeScript + Vite
+# Fee Collection Screen
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A single-page triage tool for school accounts officers. Lakshmi opens it every morning to see how much is outstanding, who needs chasing first, and how to send batch reminders — without touching a spreadsheet.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Vite · React 18 · TypeScript · Tailwind CSS v4
 
-## React Compiler
+## Run
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Open [http://localhost:5173](http://localhost:5173). The app loads with the Action Required filter active and students sorted worst-first — no manual setup needed.
+
+## Build
+
+```bash
+npm run build
+```
+
+## Dev notes
+
+- Add `?error=1` to the URL to force the error state (useful for reviewing the error UI without a backend).
+- Data is a static JSON snapshot (`src/data/fee-data.json`). The "as of" date shown in the summary bar reflects the snapshot date, not the current time.
+
+## Design decisions
+
+See [RATIONALE.md](./RATIONALE.md).
