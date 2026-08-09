@@ -7,6 +7,7 @@ import {
   AlertCircle,
   Calendar,
   CreditCard,
+  Building2,
 } from "lucide-react";
 import { StatusBadge } from "./StatusBadge";
 import type { StudentViewModel } from "../data/types";
@@ -33,7 +34,7 @@ export function DetailDrawer({ student, onClose }: DetailDrawerProps) {
         return;
       }
 
-      // Simple focus trap
+      // Focus trap
       if (e.key === "Tab" && drawerRef.current) {
         const focusable = drawerRef.current.querySelectorAll<HTMLElement>(
           'button, a, input, [tabindex]:not([tabindex="-1"])',
@@ -54,11 +55,9 @@ export function DetailDrawer({ student, onClose }: DetailDrawerProps) {
     };
 
     document.addEventListener("keydown", handleKeyDown);
-    // Focus the close button on mount
     const closeBtn = drawerRef.current?.querySelector<HTMLElement>("button");
     closeBtn?.focus();
 
-    // Prevent body scroll
     document.body.style.overflow = "hidden";
 
     return () => {
@@ -71,33 +70,36 @@ export function DetailDrawer({ student, onClose }: DetailDrawerProps) {
     <div className="fixed inset-0 z-50 flex justify-end">
       {/* Overlay */}
       <div
-        className="absolute inset-0 bg-black/50 animate-fade-in"
+        className="absolute inset-0 bg-black/60 animate-fade-in"
         onClick={onClose}
         aria-hidden="true"
       />
 
-      {/* Drawer panel */}
+      {/* Drawer panel — Official Student Fee Register Record Sheet */}
       <div
         ref={drawerRef}
         role="dialog"
         aria-modal="true"
-        aria-label={`Details for ${student.name}`}
-        className="relative w-full max-w-lg bg-surface-elevated border-l border-border overflow-y-auto animate-slide-in-right"
+        aria-label={`Student fee register record for ${student.name}`}
+        className="relative w-full max-w-lg bg-surface border-l border-border overflow-y-auto animate-slide-in-right shadow-2xl"
       >
         {/* Header */}
         <div className="sticky top-0 bg-surface-elevated/95 backdrop-blur-sm border-b border-border px-6 py-4 flex items-center justify-between z-10">
           <div>
-            <h2 className="text-lg font-semibold text-text-primary">
-              {student.name}
-            </h2>
-            <p className="text-sm text-text-secondary">
-              Class {student.class}-{student.section} · Roll #{student.rollNo}
+            <div className="flex items-center gap-2">
+              <Building2 className="w-4 h-4 text-accent" />
+              <h2 className="text-lg font-bold text-text-primary">
+                {student.name}
+              </h2>
+            </div>
+            <p className="text-xs font-mono text-text-muted mt-0.5">
+              Class {student.class}-{student.section} · Roll #{student.rollNo} · {student.admissionNo}
             </p>
           </div>
           <button
             onClick={onClose}
             aria-label="Close details drawer"
-            className="p-2 rounded-lg hover:bg-surface-hover transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            className="p-2 rounded-md hover:bg-surface-hover transition-colors cursor-pointer border border-transparent focus:border-border"
           >
             <X className="w-5 h-5 text-text-secondary" />
           </button>
@@ -105,40 +107,42 @@ export function DetailDrawer({ student, onClose }: DetailDrawerProps) {
 
         <div className="px-6 py-5 space-y-6">
           {/* Status + summary */}
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between p-3 bg-surface-subtle border border-border rounded-md">
             <StatusBadge
               status={student.displayStatus}
               statusColor={student.statusColor}
             />
             {student.daysOverdue > 0 && (
-              <span className="text-sm text-red-400 font-medium">
-                {student.daysOverdue} days overdue
+              <span className="text-xs font-mono font-bold text-red-700 dark:text-red-400">
+                {student.daysOverdue} DAYS OVERDUE
               </span>
             )}
           </div>
 
           {/* Waiver callout */}
           {student.waiverInfo && (
-            <div className="bg-violet-500/10 border border-violet-500/20 rounded-lg p-3">
-              <div className="flex items-center gap-2 text-violet-400 text-sm font-medium mb-1">
+            <div className="bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 rounded-md p-3.5">
+              <div className="flex items-center gap-2 text-blue-900 dark:text-blue-300 text-xs font-mono font-bold uppercase mb-1">
                 <FileText className="w-4 h-4" />
-                {student.waiverInfo.waiverType}
+                {student.waiverInfo.waiverType} WAIVER
               </div>
-              <p className="text-sm text-text-secondary">
+              <p className="text-xs font-mono text-text-secondary">
                 {student.waiverInfo.owedComponent} due:{" "}
-                {formatCurrency(student.waiverInfo.owedAmount)}
+                <span className="font-bold text-text-primary tabular-nums">
+                  {formatCurrency(student.waiverInfo.owedAmount)}
+                </span>
               </p>
             </div>
           )}
 
           {/* Student info */}
-          <Section title="Student Information">
-            <InfoRow label="Admission No" value={student.admissionNo} />
-            <InfoRow label="Family ID" value={student.familyId} />
+          <Section title="Student Register Details">
+            <InfoRow label="Admission No" value={student.admissionNo} isMono />
+            <InfoRow label="Family ID" value={student.familyId} isMono />
             {student.notes && (
-              <div className="mt-2 p-3 bg-amber-500/5 border border-amber-500/15 rounded-lg text-sm text-amber-300">
+              <div className="mt-2 p-3 bg-amber-50 dark:bg-amber-950/40 border border-amber-300 dark:border-amber-800 rounded-md text-xs text-amber-900 dark:text-amber-200 font-mono">
                 <div className="flex items-start gap-2">
-                  <AlertCircle className="w-4 h-4 mt-0.5 shrink-0" />
+                  <AlertCircle className="w-4 h-4 mt-0.5 shrink-0 text-amber-600 dark:text-amber-400" />
                   <span>{student.notes}</span>
                 </div>
               </div>
@@ -146,24 +150,24 @@ export function DetailDrawer({ student, onClose }: DetailDrawerProps) {
           </Section>
 
           {/* Guardian */}
-          <Section title="Guardian">
+          <Section title="Guardian Contact">
             <InfoRow label="Name" value={student.guardian.name} />
-            <div className="flex items-center justify-between py-1.5">
-              <span className="text-text-muted text-sm">Phone</span>
+            <div className="flex items-center justify-between py-1.5 border-b border-border/40">
+              <span className="text-text-muted text-xs font-mono">Phone</span>
               <a
                 href={`tel:${student.guardian.phone}`}
-                className="text-sm text-accent hover:text-accent-hover transition-colors flex items-center gap-1.5"
+                className="text-xs font-mono font-semibold text-accent hover:underline flex items-center gap-1.5"
               >
                 <Phone className="w-3.5 h-3.5" />
                 {formatPhone(student.guardian.phone)}
               </a>
             </div>
             {student.guardian.email && (
-              <div className="flex items-center justify-between py-1.5">
-                <span className="text-text-muted text-sm">Email</span>
+              <div className="flex items-center justify-between py-1.5 border-b border-border/40">
+                <span className="text-text-muted text-xs font-mono">Email</span>
                 <a
                   href={`mailto:${student.guardian.email}`}
-                  className="text-sm text-accent hover:text-accent-hover transition-colors flex items-center gap-1.5"
+                  className="text-xs font-mono font-semibold text-accent hover:underline flex items-center gap-1.5"
                 >
                   <Mail className="w-3.5 h-3.5" />
                   {student.guardian.email}
@@ -171,47 +175,37 @@ export function DetailDrawer({ student, onClose }: DetailDrawerProps) {
               </div>
             )}
             {student.remindersSent > 0 && (
-              <div className="text-xs text-text-muted mt-1">
+              <div className="text-[11px] font-mono text-text-muted mt-2">
                 {student.remindersSent} reminder
                 {student.remindersSent > 1 ? "s" : ""} sent
                 {student.lastReminderAt && (
                   <> · Last: {formatDateTime(student.lastReminderAt)}</>
                 )}
                 {student.reminderDeliveryStatus?.toUpperCase() === "FAILED" && (
-                  <span className="text-red-400 ml-1">(delivery failed)</span>
+                  <span className="text-red-700 dark:text-red-400 font-bold ml-1">
+                    (DELIVERY FAILED)
+                  </span>
                 )}
               </div>
             )}
           </Section>
 
           {/* Fee components */}
-          <Section title="Fee Breakdown">
-            <div className="overflow-x-auto rounded-lg border border-border">
-              <table className="w-full text-sm">
+          <Section title="Fee Component Breakdown">
+            <div className="overflow-x-auto rounded-md border border-border bg-surface-subtle">
+              <table className="w-full text-xs font-mono">
                 <thead>
-                  <tr className="bg-surface-hover text-left">
-                    <th
-                      scope="col"
-                      className="px-3 py-2 font-medium text-text-secondary text-xs"
-                    >
+                  <tr className="border-b border-border text-left text-text-muted uppercase bg-surface-hover">
+                    <th scope="col" className="px-3 py-2 font-bold">
                       Component
                     </th>
-                    <th
-                      scope="col"
-                      className="px-3 py-2 font-medium text-text-secondary text-xs text-right"
-                    >
+                    <th scope="col" className="px-3 py-2 font-bold text-right">
                       Billed
                     </th>
-                    <th
-                      scope="col"
-                      className="px-3 py-2 font-medium text-text-secondary text-xs text-right"
-                    >
+                    <th scope="col" className="px-3 py-2 font-bold text-right">
                       Paid
                     </th>
-                    <th
-                      scope="col"
-                      className="px-3 py-2 font-medium text-text-secondary text-xs text-right"
-                    >
+                    <th scope="col" className="px-3 py-2 font-bold text-right">
                       Due
                     </th>
                   </tr>
@@ -219,29 +213,29 @@ export function DetailDrawer({ student, onClose }: DetailDrawerProps) {
                 <tbody className="divide-y divide-border">
                   {student.components.map((comp) => (
                     <tr key={comp.type}>
-                      <td className="px-3 py-2 text-text-primary">
+                      <td className="px-3 py-2 text-text-primary font-medium">
                         {comp.type}
                         {comp.waiver && (
-                          <span className="ml-2 text-xs text-violet-400">
+                          <span className="ml-1.5 text-[10px] text-blue-700 dark:text-blue-400 font-semibold">
                             ({comp.waiver.type})
                           </span>
                         )}
                       </td>
-                      <td className="px-3 py-2 text-right text-text-secondary">
+                      <td className="px-3 py-2 text-right text-text-secondary tabular-nums">
                         {formatCurrency(comp.billed)}
                       </td>
-                      <td className="px-3 py-2 text-right text-text-secondary">
+                      <td className="px-3 py-2 text-right text-text-secondary tabular-nums">
                         {formatCurrency(comp.paid)}
                       </td>
-                      <td className="px-3 py-2 text-right font-medium">
+                      <td className="px-3 py-2 text-right font-bold tabular-nums">
                         {comp.waiver ? (
-                          <span className="text-violet-400">Waived</span>
+                          <span className="text-blue-700 dark:text-blue-400">Waived</span>
                         ) : (
                           <span
                             className={
                               comp.billed - comp.paid > 0
-                                ? "text-red-400"
-                                : "text-emerald-400"
+                                ? "text-red-700 dark:text-red-400"
+                                : "text-emerald-700 dark:text-emerald-400"
                             }
                           >
                             {formatCurrency(comp.billed - comp.paid)}
@@ -252,22 +246,22 @@ export function DetailDrawer({ student, onClose }: DetailDrawerProps) {
                   ))}
                 </tbody>
                 <tfoot>
-                  <tr className="bg-surface-hover font-semibold">
-                    <td className="px-3 py-2 text-text-primary">Total</td>
-                    <td className="px-3 py-2 text-right text-text-secondary">
+                  <tr className="bg-surface border-t border-border font-bold text-sm">
+                    <td className="px-3 py-2 text-text-primary">Total Balance</td>
+                    <td className="px-3 py-2 text-right text-text-secondary tabular-nums text-xs">
                       {formatCurrency(student.totalBilled)}
                     </td>
-                    <td className="px-3 py-2 text-right text-text-secondary">
+                    <td className="px-3 py-2 text-right text-text-secondary tabular-nums text-xs">
                       {formatCurrency(student.totalPaid)}
                     </td>
-                    <td className="px-3 py-2 text-right">
+                    <td className="px-3 py-2 text-right tabular-nums">
                       <span
                         className={
                           student.balance > 0
-                            ? "text-red-400"
+                            ? "text-red-700 dark:text-red-400"
                             : student.balance < 0
-                              ? "text-sky-400"
-                              : "text-emerald-400"
+                              ? "text-blue-700 dark:text-blue-400"
+                              : "text-emerald-700 dark:text-emerald-400"
                         }
                       >
                         {student.balance < 0 && "−"}
@@ -282,28 +276,30 @@ export function DetailDrawer({ student, onClose }: DetailDrawerProps) {
 
           {/* Instalment plan info */}
           {student.nextInstalmentDate && student.nextInstalmentAmount && (
-            <div className="bg-violet-500/10 border border-violet-500/20 rounded-lg p-3">
-              <div className="flex items-center gap-2 text-violet-400 text-sm font-medium mb-1">
+            <div className="bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 rounded-md p-3">
+              <div className="flex items-center gap-2 text-blue-900 dark:text-blue-300 text-xs font-mono font-bold uppercase mb-1">
                 <Calendar className="w-4 h-4" />
-                Next Instalment
+                Next Instalment Scheduled
               </div>
-              <p className="text-sm text-text-secondary">
-                {formatCurrency(student.nextInstalmentAmount)} due on{" "}
-                {formatDate(student.nextInstalmentDate)}
+              <p className="text-xs font-mono text-text-secondary">
+                <span className="font-bold text-text-primary tabular-nums">
+                  {formatCurrency(student.nextInstalmentAmount)}
+                </span>{" "}
+                due on {formatDate(student.nextInstalmentDate)}
               </p>
             </div>
           )}
 
           {/* Withdrawn info */}
           {student.withdrawnOn && (
-            <div className="bg-slate-500/10 border border-slate-500/20 rounded-lg p-3">
-              <p className="text-sm text-text-secondary">
+            <div className="bg-surface-subtle border border-border rounded-md p-3">
+              <p className="text-xs font-mono text-text-secondary">
                 Withdrawn on {formatDate(student.withdrawnOn)}
                 {student.refundDue && student.refundDue > 0 && (
                   <>
                     {" "}
                     · Refund due:{" "}
-                    <span className="text-amber-400 font-medium">
+                    <span className="text-amber-700 dark:text-amber-400 font-bold tabular-nums">
                       {formatCurrency(student.refundDue)}
                     </span>
                   </>
@@ -313,10 +309,10 @@ export function DetailDrawer({ student, onClose }: DetailDrawerProps) {
           )}
 
           {/* Payment history */}
-          <Section title="Payment History">
+          <Section title="Payment Transaction Log">
             {student.payments.length === 0 ? (
-              <p className="text-sm text-text-muted py-3">
-                No payments recorded.
+              <p className="text-xs font-mono text-text-muted py-2">
+                No payment transactions recorded in register.
               </p>
             ) : (
               <div className="space-y-2">
@@ -327,37 +323,37 @@ export function DetailDrawer({ student, onClose }: DetailDrawerProps) {
                     <div
                       key={`${payment.reference}-${i}`}
                       className={`
-                        flex items-center justify-between p-3 rounded-lg border
+                        flex items-center justify-between p-3 rounded-md border font-mono text-xs
                         ${
                           isFailed
-                            ? "border-red-500/20 bg-red-500/5"
-                            : "border-border bg-surface-hover/50"
+                            ? "border-red-300 dark:border-red-900 bg-red-50 dark:bg-red-950/40"
+                            : "border-border bg-surface-subtle"
                         }
                       `}
                     >
                       <div>
                         <div className="flex items-center gap-2">
                           <CreditCard
-                            className={`w-4 h-4 ${isFailed ? "text-red-400" : "text-text-muted"}`}
+                            className={`w-3.5 h-3.5 ${isFailed ? "text-red-700 dark:text-red-400" : "text-text-muted"}`}
                           />
                           <span
-                            className={`text-sm font-medium ${isFailed ? "text-red-400" : "text-text-primary"}`}
+                            className={`font-bold tabular-nums ${isFailed ? "text-red-700 dark:text-red-400" : "text-text-primary"}`}
                           >
                             {formatCurrency(payment.amount)}
                           </span>
                           {isFailed && (
-                            <span className="text-xs px-1.5 py-0.5 rounded bg-red-500/15 text-red-400 font-medium">
+                            <span className="text-[10px] px-1.5 py-0.2 rounded border border-red-400 text-red-700 dark:text-red-400 font-bold uppercase">
                               {payment.status === "BOUNCED"
-                                ? "Bounced"
+                                ? "Bounced Cheque"
                                 : "Failed"}
                             </span>
                           )}
                         </div>
-                        <div className="text-xs text-text-muted mt-0.5">
-                          {payment.mode} · {payment.reference}
+                        <div className="text-[11px] text-text-muted mt-0.5">
+                          {payment.mode} · Ref #{payment.reference}
                         </div>
                       </div>
-                      <div className="text-xs text-text-muted text-right">
+                      <div className="text-xs text-text-muted text-right tabular-nums">
                         {formatDate(payment.date)}
                       </div>
                     </div>
@@ -383,7 +379,7 @@ function Section({
 }) {
   return (
     <div>
-      <h3 className="text-xs font-semibold text-text-muted uppercase tracking-wider mb-3">
+      <h3 className="text-xs font-mono font-bold text-text-muted uppercase tracking-wider mb-2.5">
         {title}
       </h3>
       {children}
@@ -391,11 +387,23 @@ function Section({
   );
 }
 
-function InfoRow({ label, value }: { label: string; value: string }) {
+function InfoRow({
+  label,
+  value,
+  isMono = false,
+}: {
+  label: string;
+  value: string;
+  isMono?: boolean;
+}) {
   return (
-    <div className="flex items-center justify-between py-1.5">
-      <span className="text-text-muted text-sm">{label}</span>
-      <span className="text-sm text-text-primary font-medium">{value}</span>
+    <div className="flex items-center justify-between py-1.5 border-b border-border/40">
+      <span className="text-text-muted text-xs font-mono">{label}</span>
+      <span
+        className={`text-xs text-text-primary font-semibold ${isMono ? "font-mono" : ""}`}
+      >
+        {value}
+      </span>
     </div>
   );
 }

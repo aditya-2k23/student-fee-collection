@@ -22,11 +22,11 @@ export function StudentTable({
   someSelected,
 }: StudentTableProps) {
   return (
-    <div className="overflow-x-auto rounded-xl border border-border">
-      <table className="w-full text-sm" role="grid">
+    <div className="overflow-x-auto rounded-md border border-border bg-surface shadow-2xs">
+      <table className="w-full text-sm text-left border-collapse" role="grid">
         <thead>
-          <tr className="bg-surface-elevated border-b border-border text-left">
-            <th scope="col" className="w-12 px-4 py-3">
+          <tr className="bg-surface-subtle border-b border-border text-xs text-text-muted font-mono font-semibold uppercase tracking-wider">
+            <th scope="col" className="w-12 px-3 py-2.5 text-center">
               <input
                 type="checkbox"
                 checked={allSelected}
@@ -37,59 +37,54 @@ export function StudentTable({
                 aria-label={
                   allSelected ? "Deselect all students" : "Select all students"
                 }
-                className="w-4 h-4 rounded border-border-light accent-accent cursor-pointer"
+                className="w-4 h-4 rounded-xs border-border accent-accent cursor-pointer"
               />
             </th>
-            <th
-              scope="col"
-              className="px-4 py-3 font-semibold text-text-secondary text-xs uppercase tracking-wider"
-            >
-              Student
+            <th scope="col" className="px-4 py-2.5">
+              Student / Admission
             </th>
-            <th
-              scope="col"
-              className="px-4 py-3 font-semibold text-text-secondary text-xs uppercase tracking-wider"
-            >
+            <th scope="col" className="px-4 py-2.5">
               Class
             </th>
-            <th
-              scope="col"
-              className="px-4 py-3 font-semibold text-text-secondary text-xs uppercase tracking-wider hidden xl:table-cell"
-            >
+            <th scope="col" className="px-4 py-2.5 hidden xl:table-cell">
               Guardian Phone
             </th>
-            <th
-              scope="col"
-              className="px-4 py-3 font-semibold text-text-secondary text-xs uppercase tracking-wider text-right"
-            >
+            <th scope="col" className="px-4 py-2.5 text-right font-mono">
               Balance
             </th>
-            <th
-              scope="col"
-              className="px-4 py-3 font-semibold text-text-secondary text-xs uppercase tracking-wider"
-            >
-              Status
+            <th scope="col" className="px-4 py-2.5">
+              Register Status
             </th>
-            <th
-              scope="col"
-              className="px-4 py-3 font-semibold text-text-secondary text-xs uppercase tracking-wider text-right"
-            >
-              Days Overdue
+            <th scope="col" className="px-4 py-2.5 text-right font-mono">
+              Overdue
             </th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-border">
+        <tbody className="divide-y divide-border/60">
           {students.map((student) => {
             const isSelected = selectedIds.has(student.id);
+
+            // Left Margin Ledger Index Tab border calculation
+            let tabBorderClass = "border-l-4 border-l-transparent";
+            if (student.statusColor === "red" || student.statusColor === "rose") {
+              tabBorderClass = "border-l-4 border-l-red-600 dark:border-l-red-500";
+            } else if (student.statusColor === "amber") {
+              tabBorderClass = "border-l-4 border-l-amber-600 dark:border-l-amber-500";
+            } else if (student.statusColor === "sky" || student.statusColor === "violet") {
+              tabBorderClass = "border-l-4 border-l-blue-600 dark:border-l-blue-500";
+            } else if (student.statusColor === "emerald") {
+              tabBorderClass = "border-l-4 border-l-emerald-600 dark:border-l-emerald-500";
+            }
+
             return (
               <tr
                 key={student.id}
                 onClick={() => onRowClick(student)}
                 className={`
-                  cursor-pointer transition-colors duration-100
+                  cursor-pointer transition-colors duration-100 ${tabBorderClass}
                   ${
                     isSelected
-                      ? "bg-accent/5 hover:bg-accent/10"
+                      ? "bg-accent-bg/40 hover:bg-accent-bg/60"
                       : "hover:bg-surface-hover"
                   }
                 `}
@@ -107,7 +102,7 @@ export function StudentTable({
                   }
                 }}
               >
-                <td className="px-4 py-3">
+                <td className="px-3 py-3 text-center">
                   <input
                     type="checkbox"
                     checked={isSelected}
@@ -117,41 +112,46 @@ export function StudentTable({
                     }}
                     onClick={(e) => e.stopPropagation()}
                     aria-label={`Select ${student.name}`}
-                    className="w-4 h-4 rounded border-border-light accent-accent cursor-pointer"
+                    className="w-4 h-4 rounded-xs border-border accent-accent cursor-pointer"
                   />
                 </td>
                 <td className="px-4 py-3">
-                  <div className="font-medium text-text-primary">
-                    {student.name}
+                  <div className="font-semibold text-text-primary flex items-center gap-2">
+                    <span>{student.name}</span>
+                    <span className="text-[11px] font-mono font-normal text-text-muted">
+                      ({student.admissionNo})
+                    </span>
                   </div>
                   {student.waiverInfo && (
-                    <div className="text-xs text-violet-400 mt-0.5">
+                    <div className="text-xs font-mono text-blue-700 dark:text-blue-400 mt-0.5 font-medium">
                       {student.waiverInfo.waiverType} ·{" "}
                       {student.waiverInfo.owedComponent} Due{" "}
-                      {formatCurrency(student.waiverInfo.owedAmount)}
+                      <span className="tabular-nums">
+                        {formatCurrency(student.waiverInfo.owedAmount)}
+                      </span>
                     </div>
                   )}
                 </td>
-                <td className="px-4 py-3 text-text-secondary">
+                <td className="px-4 py-3 text-text-secondary font-mono text-xs font-medium">
                   {student.class}-{student.section}
                 </td>
-                <td className="px-4 py-3 text-text-secondary hidden xl:table-cell">
+                <td className="px-4 py-3 text-text-secondary hidden xl:table-cell font-mono text-xs">
                   <a
                     href={`tel:${student.guardian.phone}`}
-                    className="hover:text-accent transition-colors"
+                    className="hover:text-accent hover:underline transition-colors"
                     onClick={(e) => e.stopPropagation()}
                   >
                     {formatPhone(student.guardian.phone)}
                   </a>
                 </td>
-                <td className="px-4 py-3 text-right font-semibold">
+                <td className="px-4 py-3 text-right font-mono font-bold text-sm tabular-nums">
                   <span
                     className={
                       student.balance > 0
-                        ? "text-red-400"
+                        ? "text-red-700 dark:text-red-400"
                         : student.balance < 0
-                          ? "text-sky-400"
-                          : "text-emerald-400"
+                          ? "text-blue-700 dark:text-blue-400"
+                          : "text-emerald-700 dark:text-emerald-400"
                     }
                   >
                     {student.balance < 0 && "−"}
@@ -164,9 +164,9 @@ export function StudentTable({
                     statusColor={student.statusColor}
                   />
                 </td>
-                <td className="px-4 py-3 text-right text-text-secondary">
+                <td className="px-4 py-3 text-right font-mono text-xs tabular-nums">
                   {student.daysOverdue > 0 ? (
-                    <span className="text-red-400 font-medium">
+                    <span className="text-red-700 dark:text-red-400 font-bold">
                       {student.daysOverdue}d
                     </span>
                   ) : (

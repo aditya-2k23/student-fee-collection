@@ -1,38 +1,143 @@
 @import "tailwindcss";
 
-/* ─── Custom theme tokens ─── */
-@theme {
-  --color-surface: #0f1117;
-  --color-surface-elevated: #1a1d27;
-  --color-surface-hover: #22252f;
-  --color-border: #2a2d3a;
-  --color-border-light: #363a4a;
-  --color-text-primary: #e8eaf0;
-  --color-text-secondary: #9ca3b5;
-  --color-text-muted: #6b7280;
-  --color-accent: #6366f1;
-  --color-accent-hover: #818cf8;
+/* ─── School Ledger Theme Design Tokens ─── */
+:root {
+  /* Light Theme ("Official Register & Deep Ink") */
+  --bg-canvas: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-surface-elevated: #ffffff;
+  --bg-surface-subtle: #f1f5f9;
+  --bg-surface-hover: #e2e8f0;
 
-  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --border-ledger: #cbd5e1;
+  --border-ledger-subtle: #e2e8f0;
+  --border-ledger-strong: #94a3b8;
+
+  --text-ink-primary: #0f172a;
+  --text-ink-secondary: #334155;
+  --text-ink-muted: #64748b;
+
+  --accent-ledger: #1e40af;
+  --accent-ledger-hover: #1d4ed8;
+  --accent-ledger-bg: #dbeafe;
+  --accent-ledger-text: #ffffff;
+
+  /* Status Ink Colors - Light Mode */
+  --stamp-red-text: #991b1b;
+  --stamp-red-bg: #fef2f2;
+  --stamp-red-border: #fca5a5;
+
+  --stamp-amber-text: #92400e;
+  --stamp-amber-bg: #fffbeb;
+  --stamp-amber-border: #fde68a;
+
+  --stamp-green-text: #166534;
+  --stamp-green-bg: #f0fdf4;
+  --stamp-green-border: #86efac;
+
+  --stamp-blue-text: #1e40af;
+  --stamp-blue-bg: #eff6ff;
+  --stamp-blue-border: #93c5fd;
+
+  --stamp-slate-text: #334155;
+  --stamp-slate-bg: #f8fafc;
+  --stamp-slate-border: #cbd5e1;
+
+  color-scheme: light;
 }
 
-/* ─── Base styles ─── */
+.dark {
+  /* Dark Theme ("Midnight Desk & Brass Stamp") */
+  --bg-canvas: #0b0f17;
+  --bg-surface: #151b26;
+  --bg-surface-elevated: #1e2638;
+  --bg-surface-subtle: #19202e;
+  --bg-surface-hover: #253044;
+
+  --border-ledger: #2a3447;
+  --border-ledger-subtle: #1e2638;
+  --border-ledger-strong: #475569;
+
+  --text-ink-primary: #f8fafc;
+  --text-ink-secondary: #cbd5e1;
+  --text-ink-muted: #94a3b8;
+
+  --accent-ledger: #3b82f6;
+  --accent-ledger-hover: #60a5fa;
+  --accent-ledger-bg: #1e3a8a60;
+  --accent-ledger-text: #ffffff;
+
+  /* Status Ink Colors - Dark Mode */
+  --stamp-red-text: #f87171;
+  --stamp-red-bg: #450a0a70;
+  --stamp-red-border: #991b1b;
+
+  --stamp-amber-text: #fbbf24;
+  --stamp-amber-bg: #451a0370;
+  --stamp-amber-border: #92400e;
+
+  --stamp-green-text: #4ade80;
+  --stamp-green-bg: #052e1670;
+  --stamp-green-border: #166534;
+
+  --stamp-blue-text: #60a5fa;
+  --stamp-blue-bg: #17255470;
+  --stamp-blue-border: #1e40af;
+
+  --stamp-slate-text: #94a3b8;
+  --stamp-slate-bg: #1e293b70;
+  --stamp-slate-border: #475569;
+
+  color-scheme: dark;
+}
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-canvas: var(--bg-canvas);
+  --color-surface: var(--bg-surface);
+  --color-surface-elevated: var(--bg-surface-elevated);
+  --color-surface-subtle: var(--bg-surface-subtle);
+  --color-surface-hover: var(--bg-surface-hover);
+
+  --color-border: var(--border-ledger);
+  --color-border-subtle: var(--border-ledger-subtle);
+  --color-border-strong: var(--border-ledger-strong);
+
+  --color-text-primary: var(--text-ink-primary);
+  --color-text-secondary: var(--text-ink-secondary);
+  --color-text-muted: var(--text-ink-muted);
+
+  --color-accent: var(--accent-ledger);
+  --color-accent-hover: var(--accent-ledger-hover);
+  --color-accent-bg: var(--accent-ledger-bg);
+  --color-accent-text: var(--accent-ledger-text);
+}
+
+/* ─── Base Ledger Reset ─── */
 body {
-  background-color: var(--color-surface);
-  color: var(--color-text-primary);
+  background-color: var(--bg-canvas);
+  color: var(--text-ink-primary);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* ─── Focus ring utility ─── */
+/* Tabular numerics utility */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ─── Accessibility & High Contrast Focus Ring ─── */
 *:focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--accent-ledger);
   outline-offset: 2px;
   border-radius: 4px;
 }
 
-/* ─── Scrollbar styling ─── */
+/* ─── Scrollbars ─── */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -43,15 +148,15 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-border);
+  background: var(--border-ledger);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-border-light);
+  background: var(--border-ledger-strong);
 }
 
-/* ─── Drawer animation ─── */
+/* ─── Animations & Reduced Motion ─── */
 @keyframes slide-in-right {
   from {
     transform: translateX(100%);
@@ -61,30 +166,12 @@ body {
   }
 }
 
-@keyframes slide-out-right {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(100%);
-  }
-}
-
 @keyframes fade-in {
   from {
     opacity: 0;
   }
   to {
     opacity: 1;
-  }
-}
-
-@keyframes fade-out {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
   }
 }
 
@@ -99,18 +186,8 @@ body {
   }
 }
 
-@keyframes pulse-soft {
-  0%,
-  100% {
-    opacity: 0.4;
-  }
-  50% {
-    opacity: 0.7;
-  }
-}
-
 .animate-slide-in-right {
-  animation: slide-in-right 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: slide-in-right 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .animate-fade-in {
@@ -118,24 +195,30 @@ body {
 }
 
 .animate-slide-up {
-  animation: slide-up 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: slide-up 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.animate-pulse-soft {
-  animation: pulse-soft 1.8s ease-in-out infinite;
+@media (prefers-reduced-motion: reduce) {
+  .animate-slide-in-right,
+  .animate-fade-in,
+  .animate-slide-up,
+  .skeleton {
+    animation: none !important;
+    transition: none !important;
+  }
 }
 
 /* ─── Skeleton loading ─── */
 .skeleton {
   background: linear-gradient(
     90deg,
-    var(--color-surface-elevated) 25%,
-    var(--color-surface-hover) 50%,
-    var(--color-surface-elevated) 75%
+    var(--bg-surface-subtle) 25%,
+    var(--bg-surface-hover) 50%,
+    var(--bg-surface-subtle) 75%
   );
   background-size: 200% 100%;
   animation: skeleton-shimmer 1.5s ease-in-out infinite;
-  border-radius: 6px;
+  border-radius: 4px;
 }
 
 @keyframes skeleton-shimmer {

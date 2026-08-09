@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef, useMemo } from "react";
-import { GraduationCap } from "lucide-react";
+import { GraduationCap, Sun, Moon } from "lucide-react";
 import type {
   FeeData,
   StudentViewModel,
@@ -41,6 +41,32 @@ function useMediaQuery(query: string): boolean {
 }
 
 export default function App() {
+  // ─── Theme state ───
+  const [theme, setTheme] = useState<"light" | "dark">(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("fee-register-theme");
+      if (saved === "light" || saved === "dark") return saved;
+      return window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+    }
+    return "light";
+  });
+
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === "dark") {
+      root.classList.add("dark");
+    } else {
+      root.classList.remove("dark");
+    }
+    localStorage.setItem("fee-register-theme", theme);
+  }, [theme]);
+
+  const toggleTheme = useCallback(() => {
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+  }, []);
+
   // ─── Data state ───
   const [appState, setAppState] = useState<AppState>({ kind: "loading" });
 
@@ -230,21 +256,43 @@ export default function App() {
   return (
     <div className="min-h-screen bg-surface">
       {/* Header */}
-      <header className="border-b border-border bg-surface-elevated/80 backdrop-blur-sm sticky top-0 z-30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center gap-3">
-          <div className="w-9 h-9 rounded-lg bg-accent/15 flex items-center justify-center">
-            <GraduationCap className="w-5 h-5 text-accent" />
+      <header className="border-b border-border bg-surface-elevated/90 backdrop-blur-sm sticky top-0 z-30 transition-colors">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-md bg-accent-bg border border-border flex items-center justify-center">
+              <GraduationCap className="w-5 h-5 text-accent" />
+            </div>
+            <div>
+              <h1 className="text-base font-bold tracking-tight text-text-primary leading-tight">
+                Fee Collection Register
+              </h1>
+              {appState.kind === "loaded" && (
+                <p className="text-xs text-text-muted font-medium">
+                  {appState.data.meta.school}
+                </p>
+              )}
+            </div>
           </div>
-          <div>
-            <h1 className="text-base font-semibold text-text-primary leading-tight">
-              Fee Collection
-            </h1>
-            {appState.kind === "loaded" && (
-              <p className="text-xs text-text-muted">
-                {appState.data.meta.school}
-              </p>
+
+          <button
+            type="button"
+            onClick={toggleTheme}
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md border border-border bg-surface-subtle hover:bg-surface-hover text-xs font-semibold text-text-secondary transition-colors cursor-pointer"
+            aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+            title={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+          >
+            {theme === "light" ? (
+              <>
+                <Moon className="w-3.5 h-3.5 text-text-muted" />
+                <span className="hidden sm:inline">Dark Register</span>
+              </>
+            ) : (
+              <>
+                <Sun className="w-3.5 h-3.5 text-amber-400" />
+                <span className="hidden sm:inline">Light Register</span>
+              </>
             )}
-          </div>
+          </button>
         </div>
       </header>
 

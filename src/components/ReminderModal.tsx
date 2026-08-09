@@ -121,24 +121,24 @@ export function ReminderModal({
         aria-hidden="true"
       />
 
-      {/* Modal */}
+      {/* Modal — Batch Dispatch Register */}
       <div
         ref={modalRef}
         role="dialog"
         aria-modal="true"
         aria-label="Send payment reminders"
-        className="relative bg-surface-elevated border border-border rounded-2xl w-full max-w-md max-h-[80vh] overflow-hidden animate-fade-in"
+        className="relative bg-surface-elevated border border-border rounded-md w-full max-w-md max-h-[80vh] overflow-hidden animate-fade-in shadow-2xl"
       >
         {state === "success" ? (
           /* Success state */
           <div className="p-8 text-center">
-            <div className="w-16 h-16 rounded-full bg-emerald-500/15 flex items-center justify-center mx-auto mb-4">
-              <CheckCircle className="w-8 h-8 text-emerald-400" />
+            <div className="w-14 h-14 rounded-full bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center mx-auto mb-4">
+              <CheckCircle className="w-7 h-7 text-emerald-600 dark:text-emerald-400" />
             </div>
-            <h2 className="text-lg font-semibold text-text-primary mb-1">
-              Reminders Sent
+            <h2 className="text-lg font-bold font-mono text-text-primary mb-1">
+              REMINDERS DISPATCHED
             </h2>
-            <p className="text-sm text-text-secondary">
+            <p className="text-xs font-mono text-text-muted">
               {familyGroups.length}{" "}
               {familyGroups.length === 1 ? "family" : "families"} notified
               successfully.
@@ -147,35 +147,36 @@ export function ReminderModal({
         ) : (
           <>
             {/* Header */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-border">
-              <h2 className="text-lg font-semibold text-text-primary">
-                Send Reminders
+            <div className="flex items-center justify-between px-6 py-4 border-b border-border bg-surface-subtle">
+              <h2 className="text-base font-bold font-mono text-text-primary tracking-tight">
+                SEND REMINDERS DISPATCH
               </h2>
               <button
                 onClick={onClose}
                 disabled={state === "sending"}
                 aria-label="Close reminder dialog"
-                className="p-2 rounded-lg hover:bg-surface-hover transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent disabled:opacity-50"
+                className="p-1.5 rounded-md hover:bg-surface-hover transition-colors border border-transparent focus:border-border disabled:opacity-50 cursor-pointer"
               >
-                <X className="w-5 h-5 text-text-secondary" />
+                <X className="w-4 h-4 text-text-secondary" />
               </button>
             </div>
 
             {/* Body */}
             <div className="px-6 py-4 overflow-y-auto max-h-[50vh]">
-              <p className="text-sm text-text-secondary mb-4">
-                Payment reminders will be sent to {familyGroups.length}{" "}
+              <p className="text-xs font-mono text-text-muted mb-3">
+                Payment reminders will be sent to{" "}
+                <span className="font-bold text-text-primary tabular-nums">{familyGroups.length}</span>{" "}
                 {familyGroups.length === 1 ? "family" : "families"}:
               </p>
 
-              <div className="space-y-3">
+              <div className="space-y-2.5">
                 {familyGroups.map((group) => (
                   <div
                     key={group.guardianPhone}
-                    className="bg-surface-hover/50 border border-border rounded-lg p-3"
+                    className="bg-surface border border-border rounded-md p-3 font-mono text-xs"
                   >
                     <div className="flex items-center justify-between mb-1">
-                      <span className="text-sm font-medium text-text-primary">
+                      <span className="font-bold text-text-primary">
                         {group.guardianName}
                         {group.children.length > 1 && (
                           <span className="text-text-muted font-normal ml-1">
@@ -183,17 +184,17 @@ export function ReminderModal({
                           </span>
                         )}
                       </span>
-                      <span className="text-sm font-semibold text-red-400">
+                      <span className="font-bold text-red-700 dark:text-red-400 tabular-nums">
                         {formatCurrency(group.totalBalance)}
                       </span>
                     </div>
-                    <div className="text-xs text-text-muted">
+                    <div className="text-[11px] text-text-muted">
                       {group.children
                         .map((c) => (
                           <span key={c.name}>
                             {c.name} (Class {c.class}-{c.section})
                             {group.children.length > 1 && (
-                              <> · {formatCurrency(c.balance)}</>
+                              <> · <span className="tabular-nums">{formatCurrency(c.balance)}</span></>
                             )}
                           </span>
                         ))
@@ -210,11 +211,11 @@ export function ReminderModal({
             </div>
 
             {/* Footer */}
-            <div className="px-6 py-4 border-t border-border flex justify-end gap-3">
+            <div className="px-6 py-3.5 border-t border-border bg-surface-subtle flex justify-end gap-2.5">
               <button
                 onClick={onClose}
                 disabled={state === "sending"}
-                className="px-4 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-surface-hover transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent disabled:opacity-50"
+                className="px-3.5 py-1.5 rounded-md text-xs font-mono font-medium text-text-secondary hover:text-text-primary hover:bg-surface-hover transition-colors border border-border disabled:opacity-50 cursor-pointer"
               >
                 Cancel
               </button>
@@ -223,21 +224,20 @@ export function ReminderModal({
                 onClick={handleSend}
                 disabled={state === "sending"}
                 className="
-                  inline-flex items-center gap-2 px-4 py-2 rounded-lg
-                  bg-accent hover:bg-accent-hover text-white text-sm font-medium
-                  transition-colors duration-150
-                  focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface-elevated
+                  inline-flex items-center gap-2 px-4 py-1.5 rounded-md
+                  bg-accent text-accent-text hover:bg-accent-hover text-xs font-mono font-semibold uppercase tracking-wider
+                  transition-colors cursor-pointer shadow-2xs
                   disabled:opacity-70 disabled:cursor-not-allowed
                 "
               >
                 {state === "sending" ? (
                   <>
-                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <Loader2 className="w-3.5 h-3.5 animate-spin" />
                     Sending…
                   </>
                 ) : (
                   <>
-                    <Send className="w-4 h-4" />
+                    <Send className="w-3.5 h-3.5" />
                     Send {familyGroups.length} Reminder
                     {familyGroups.length > 1 ? "s" : ""}
                   </>
