@@ -28,7 +28,7 @@ Two children, one guardian: Clive Fernandes, `familyId: FAM-360`. Rhea (Class 6-
 
 The following figures are derived directly from `fee-data.json` (24 students, as of 8 Aug 2026):
 
-**Total Outstanding: ₹5,69,200** — sum of all positive `balance` values only. Students with a negative balance (credit) are excluded from this total and shown on a separate line so the number can be sanity-checked without mental arithmetic.
+**Total Outstanding: ₹5,70,200** — sum of all positive `balance` values only. Students with a negative balance (credit) are excluded from this total and shown on a separate line so the number can be sanity-checked without mental arithmetic.
 
 **Credits: ₹2,000** — Zoya (STU-1004) overpaid by ₹2,000; will carry forward to Term 3.
 
@@ -45,7 +45,7 @@ From opening the app to sending reminders to all Action Required students:
 | 0    | App loads — already filtered to Action Required (15 students), sorted worst-first | 0      |
 | 1    | Click "Select all" checkbox in the table header                                   | 1      |
 | 2    | Click "Send Reminders" in the bulk action bar                                     | 2      |
-| 3    | Click "Send 15 Reminders" in the confirmation modal                               | 3      |
+| 3    | Click "Send 14 Reminders" in the confirmation modal                               | 3      |
 
 **Total: 3 clicks.** The flow was verified by clicking through in the running app — select all, send, confirm. The siblings correctly collapse to one guardian entry in the modal, so the button reads "Send 14 Reminders" (14 distinct families for 15 students, since the Fernandes family has two children). The number in the modal reflects families, not students — which is the right unit for messaging.
 

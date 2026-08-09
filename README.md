@@ -4,7 +4,7 @@ A single-page triage tool for school accounts officers. Lakshmi opens it every m
 
 ## Stack
 
-Vite · React 18 · TypeScript · Tailwind CSS v4
+Vite · React 19 · TypeScript · Tailwind CSS v4
 
 ## Run
 
