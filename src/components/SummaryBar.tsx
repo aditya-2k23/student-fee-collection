@@ -1,6 +1,6 @@
-import { IndianRupee, AlertTriangle, Clock, TrendingDown } from 'lucide-react';
-import type { Summary, Meta } from '../data/types';
-import { formatCurrency, formatDateTime } from '../utils/format';
+import { IndianRupee, AlertTriangle, Clock, TrendingDown } from "lucide-react";
+import type { Summary, Meta } from "../data/types";
+import { formatCurrency, formatDateTime } from "../utils/format";
 
 interface SummaryBarProps {
   summary: Summary;
@@ -12,7 +12,7 @@ export function SummaryBar({ summary, meta }: SummaryBarProps) {
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       {/* Total Outstanding — the largest number on screen */}
       <div className="col-span-1 sm:col-span-2 bg-surface-elevated border border-border rounded-xl p-5 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-linear-to-br from-red-500/5 to-transparent pointer-events-none" />
         <div className="relative">
           <div className="flex items-center gap-2 text-text-secondary text-sm mb-1">
             <IndianRupee className="w-4 h-4" />
@@ -41,7 +41,7 @@ export function SummaryBar({ summary, meta }: SummaryBarProps) {
 
       {/* Action Required count */}
       <div className="bg-surface-elevated border border-border rounded-xl p-5 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-linear-to-br from-amber-500/5 to-transparent pointer-events-none" />
         <div className="relative">
           <div className="flex items-center gap-2 text-text-secondary text-sm mb-1">
             <AlertTriangle className="w-4 h-4 text-amber-400" />

@@ -12,22 +12,30 @@ export interface Meta {
 export interface Guardian {
   name: string;
   phone: string;
-  email: string;
+  email: string | null;
+}
+
+export interface FeeWaiver {
+  type: string;
+  percent: number;
+  reason: string;
 }
 
 export interface FeeComponent {
   type: string;
   billed: number;
   paid: number;
-  waiver?: string;
+  waiver?: FeeWaiver;
 }
 
 export interface Payment {
+  id?: string;
   date: string;
   amount: number;
   mode: string;
   status: 'SUCCESS' | 'BOUNCED' | 'FAILED' | 'PENDING';
   reference: string;
+  term?: string;
 }
 
 export type RawStatus =

@@ -137,21 +137,23 @@ export function DetailDrawer({ student, onClose }: DetailDrawerProps) {
                 {formatPhone(student.guardian.phone)}
               </a>
             </div>
-            <div className="flex items-center justify-between py-1.5">
-              <span className="text-text-muted text-sm">Email</span>
-              <a
-                href={`mailto:${student.guardian.email}`}
-                className="text-sm text-accent hover:text-accent-hover transition-colors flex items-center gap-1.5"
-              >
-                <Mail className="w-3.5 h-3.5" />
-                {student.guardian.email}
-              </a>
-            </div>
+            {student.guardian.email && (
+              <div className="flex items-center justify-between py-1.5">
+                <span className="text-text-muted text-sm">Email</span>
+                <a
+                  href={`mailto:${student.guardian.email}`}
+                  className="text-sm text-accent hover:text-accent-hover transition-colors flex items-center gap-1.5"
+                >
+                  <Mail className="w-3.5 h-3.5" />
+                  {student.guardian.email}
+                </a>
+              </div>
+            )}
             {student.remindersSent > 0 && (
               <div className="text-xs text-text-muted mt-1">
                 {student.remindersSent} reminder{student.remindersSent > 1 ? 's' : ''} sent
                 {student.lastReminderAt && <> · Last: {formatDateTime(student.lastReminderAt)}</>}
-                {student.reminderDeliveryStatus === 'failed' && (
+                {student.reminderDeliveryStatus?.toUpperCase() === 'FAILED' && (
                   <span className="text-red-400 ml-1">(delivery failed)</span>
                 )}
               </div>
@@ -176,7 +178,7 @@ export function DetailDrawer({ student, onClose }: DetailDrawerProps) {
                       <td className="px-3 py-2 text-text-primary">
                         {comp.type}
                         {comp.waiver && (
-                          <span className="ml-2 text-xs text-violet-400">({comp.waiver})</span>
+                          <span className="ml-2 text-xs text-violet-400">({comp.waiver.type})</span>
                         )}
                       </td>
                       <td className="px-3 py-2 text-right text-text-secondary">{formatCurrency(comp.billed)}</td>

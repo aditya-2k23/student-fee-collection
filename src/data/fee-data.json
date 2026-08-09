@@ -1,546 +1,876 @@
 {
   "meta": {
-    "school": "Greenfield International School",
-    "academicYear": "2025-26",
+    "school": "Vidya Vihar Public School",
+    "academicYear": "2026-27",
     "term": "Term 2",
-    "dueDate": "2025-07-15",
-    "asOf": "2025-08-05T09:30:00+05:30",
+    "dueDate": "2026-08-05",
+    "asOf": "2026-08-08",
     "currency": "INR"
   },
   "students": [
     {
-      "id": "STU001",
+      "id": "STU-1001",
       "name": "Aarav Sharma",
-      "class": "10",
+      "class": "8",
       "section": "A",
       "rollNo": 12,
-      "admissionNo": "GIS-2020-0142",
-      "familyId": "FAM001",
+      "admissionNo": "ADM-2019-0412",
+      "familyId": "FAM-330",
       "guardian": {
-        "name": "Rajesh Sharma",
-        "phone": "+919876543210",
-        "email": "rajesh.sharma@email.com"
+        "name": "Rohit Sharma",
+        "phone": "+91 98450 11223",
+        "email": "rohit.sharma@example.com"
       },
       "components": [
-        { "type": "Tuition", "billed": 45000, "paid": 0 },
-        { "type": "Transport", "billed": 12000, "paid": 0 },
-        { "type": "Lab Fee", "billed": 5000, "paid": 0 }
+        { "type": "TUITION", "billed": 42000, "paid": 0 },
+        { "type": "TRANSPORT", "billed": 9000, "paid": 0 }
       ],
-      "totalBilled": 62000,
+      "totalBilled": 51000,
       "totalPaid": 0,
-      "balance": 62000,
+      "balance": 51000,
       "status": "OVERDUE",
-      "daysOverdue": 21,
-      "lastPaymentDate": null,
-      "remindersSent": 2,
-      "lastReminderAt": "2025-07-28T10:00:00+05:30",
-      "reminderDeliveryStatus": "delivered",
-      "notes": "Guardian requested callback. Said will pay by month end.",
-      "payments": []
-    },
-    {
-      "id": "STU002",
-      "name": "Priya Patel",
-      "class": "8",
-      "section": "B",
-      "rollNo": 5,
-      "admissionNo": "GIS-2021-0287",
-      "familyId": "FAM002",
-      "guardian": {
-        "name": "Meena Patel",
-        "phone": "+919123456789",
-        "email": "meena.patel@email.com"
-      },
-      "components": [
-        { "type": "Tuition", "billed": 40000, "paid": 20000 },
-        { "type": "Transport", "billed": 10000, "paid": 0 },
-        { "type": "Activity Fee", "billed": 3000, "paid": 3000 }
-      ],
-      "totalBilled": 53000,
-      "totalPaid": 23000,
-      "balance": 30000,
-      "status": "PARTIALLY_PAID",
-      "daysOverdue": 14,
-      "lastPaymentDate": "2025-07-20",
+      "daysOverdue": 3,
+      "lastPaymentDate": "2026-05-02",
       "remindersSent": 1,
-      "lastReminderAt": "2025-07-25T14:00:00+05:30",
-      "reminderDeliveryStatus": "delivered",
+      "lastReminderAt": "2026-08-06T09:15:00+05:30",
       "notes": null,
       "payments": [
         {
-          "date": "2025-07-20",
-          "amount": 23000,
+          "id": "PAY-9001",
+          "date": "2026-05-02",
+          "amount": 51000,
           "mode": "UPI",
-          "status": "SUCCESS",
-          "reference": "UPI-20250720-8827"
+          "reference": "UPI/512034887",
+          "term": "Term 1",
+          "status": "SUCCESS"
         }
       ]
     },
     {
-      "id": "STU003",
-      "name": "Rohan Mehta",
-      "class": "12",
-      "section": "A",
-      "rollNo": 1,
-      "admissionNo": "GIS-2019-0045",
-      "familyId": "FAM003",
+      "id": "STU-1002",
+      "name": "Aarav Sharma",
+      "class": "5",
+      "section": "C",
+      "rollNo": 4,
+      "admissionNo": "ADM-2022-0881",
+      "familyId": "FAM-411",
       "guardian": {
-        "name": "Vikram Mehta",
-        "phone": "+919988776655",
-        "email": "vikram.mehta@email.com"
+        "name": "Nisha Sharma",
+        "phone": "+91 99001 44556",
+        "email": "nisha.s@example.com"
       },
-      "components": [
-        { "type": "Tuition", "billed": 50000, "paid": 50000 },
-        { "type": "Transport", "billed": 15000, "paid": 15000 },
-        { "type": "Lab Fee", "billed": 8000, "paid": 8000 }
-      ],
-      "totalBilled": 73000,
-      "totalPaid": 73000,
+      "components": [{ "type": "TUITION", "billed": 34000, "paid": 34000 }],
+      "totalBilled": 34000,
+      "totalPaid": 34000,
       "balance": 0,
       "status": "PAID",
       "daysOverdue": 0,
-      "lastPaymentDate": "2025-07-10",
+      "lastPaymentDate": "2026-08-04",
       "remindersSent": 0,
       "lastReminderAt": null,
-      "notes": null,
+      "notes": "Different family from STU-1001 despite same name",
       "payments": [
         {
-          "date": "2025-07-10",
-          "amount": 73000,
-          "mode": "Bank Transfer",
-          "status": "SUCCESS",
-          "reference": "NEFT-20250710-4412"
+          "id": "PAY-9002",
+          "date": "2026-08-04",
+          "amount": 34000,
+          "mode": "NETBANKING",
+          "reference": "HDFC/8830021",
+          "term": "Term 2",
+          "status": "SUCCESS"
         }
       ]
     },
     {
-      "id": "STU004",
-      "name": "Ananya Iyer",
-      "class": "6",
-      "section": "C",
-      "rollNo": 18,
-      "admissionNo": "GIS-2022-0510",
-      "familyId": "FAM004",
+      "id": "STU-1003",
+      "name": "Meenakshi Sundareswaran Iyer",
+      "class": "11",
+      "section": "B",
+      "rollNo": 21,
+      "admissionNo": "ADM-2016-0093",
+      "familyId": "FAM-102",
       "guardian": {
-        "name": "Suresh Iyer",
-        "phone": "+919555123456",
-        "email": "suresh.iyer@email.com"
+        "name": "S. Sundareswaran",
+        "phone": "+91 94440 87651",
+        "email": "sundar.iyer@example.com"
       },
       "components": [
-        { "type": "Tuition", "billed": 35000, "paid": 35000 },
-        { "type": "Transport", "billed": 9000, "paid": 9000 },
-        { "type": "Activity Fee", "billed": 2500, "paid": 2500 }
+        { "type": "TUITION", "billed": 68000, "paid": 30000 },
+        { "type": "LAB", "billed": 6500, "paid": 0 }
       ],
-      "totalBilled": 46500,
-      "totalPaid": 49000,
-      "balance": -2500,
+      "totalBilled": 74500,
+      "totalPaid": 30000,
+      "balance": 44500,
+      "status": "PARTIALLY_PAID",
+      "daysOverdue": 3,
+      "lastPaymentDate": "2026-08-03",
+      "remindersSent": 0,
+      "lastReminderAt": null,
+      "notes": "Parent said balance by 20th",
+      "payments": [
+        {
+          "id": "PAY-9003",
+          "date": "2026-08-03",
+          "amount": 30000,
+          "mode": "CASH",
+          "reference": "RCPT-4471",
+          "term": "Term 2",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "id": "STU-1004",
+      "name": "Zoya",
+      "class": "3",
+      "section": "A",
+      "rollNo": 9,
+      "admissionNo": "ADM-2024-1201",
+      "familyId": "FAM-518",
+      "guardian": {
+        "name": "Farhan Qureshi",
+        "phone": "+91 98860 33119",
+        "email": null
+      },
+      "components": [{ "type": "TUITION", "billed": 28000, "paid": 30000 }],
+      "totalBilled": 28000,
+      "totalPaid": 30000,
+      "balance": -2000,
       "status": "CREDIT_BALANCE",
       "daysOverdue": 0,
-      "lastPaymentDate": "2025-07-05",
+      "lastPaymentDate": "2026-08-01",
       "remindersSent": 0,
       "lastReminderAt": null,
-      "notes": "Advance payment from previous term carried forward.",
+      "notes": "Overpaid by 2000, carry forward to Term 3",
       "payments": [
         {
-          "date": "2025-07-05",
-          "amount": 49000,
-          "mode": "Cheque",
-          "status": "SUCCESS",
-          "reference": "CHQ-882741"
+          "id": "PAY-9004",
+          "date": "2026-08-01",
+          "amount": 30000,
+          "mode": "UPI",
+          "reference": "UPI/611229003",
+          "term": "Term 2",
+          "status": "SUCCESS"
         }
       ]
     },
     {
-      "id": "STU005",
-      "name": "Kabir Singh",
+      "id": "STU-1005",
+      "name": "Devansh Patil",
       "class": "9",
       "section": "A",
-      "rollNo": 22,
-      "admissionNo": "GIS-2020-0198",
-      "familyId": "FAM005",
+      "rollNo": 2,
+      "admissionNo": "ADM-2018-0334",
+      "familyId": "FAM-207",
       "guardian": {
-        "name": "Harpreet Singh",
-        "phone": "+919333444555",
-        "email": "harpreet.singh@email.com"
+        "name": "Sameer Patil",
+        "phone": "+91 90080 22114",
+        "email": "sameer.patil@example.com"
       },
       "components": [
-        { "type": "Tuition", "billed": 42000, "paid": 42000 },
-        { "type": "Transport", "billed": 11000, "paid": 11000 }
-      ],
-      "totalBilled": 53000,
-      "totalPaid": 11000,
-      "balance": 42000,
-      "status": "PAYMENT_FAILED",
-      "daysOverdue": 18,
-      "lastPaymentDate": "2025-07-12",
-      "remindersSent": 3,
-      "lastReminderAt": "2025-08-01T09:00:00+05:30",
-      "reminderDeliveryStatus": "delivered",
-      "notes": "Cheque for ₹42,000 bounced on 15 Jul. Guardian aware, promised replacement cheque.",
-      "payments": [
         {
-          "date": "2025-07-12",
-          "amount": 11000,
-          "mode": "Cash",
-          "status": "SUCCESS",
-          "reference": "CASH-20250712-01"
+          "type": "TUITION",
+          "billed": 46000,
+          "paid": 0,
+          "waiver": {
+            "type": "SCHOLARSHIP",
+            "percent": 100,
+            "reason": "Merit scholarship 2026-27"
+          }
         },
-        {
-          "date": "2025-07-14",
-          "amount": 42000,
-          "mode": "Cheque",
-          "status": "BOUNCED",
-          "reference": "CHQ-551902"
-        }
-      ]
-    },
-    {
-      "id": "STU006",
-      "name": "Diya Nair",
-      "class": "7",
-      "section": "B",
-      "rollNo": 8,
-      "admissionNo": "GIS-2021-0334",
-      "familyId": "FAM006",
-      "guardian": {
-        "name": "Lakshmi Nair",
-        "phone": "+919777888999",
-        "email": "lakshmi.nair@email.com"
-      },
-      "components": [
-        { "type": "Tuition", "billed": 38000, "paid": 0 },
-        { "type": "Transport", "billed": 10000, "paid": 0 }
+        { "type": "TRANSPORT", "billed": 9000, "paid": 0 }
       ],
-      "totalBilled": 48000,
+      "totalBilled": 9000,
       "totalPaid": 0,
-      "balance": 48000,
-      "status": "INSTALMENT_PLAN",
-      "daysOverdue": 0,
+      "balance": 9000,
+      "status": "OVERDUE",
+      "daysOverdue": 3,
       "lastPaymentDate": null,
       "remindersSent": 0,
       "lastReminderAt": null,
-      "nextInstalmentDate": "2025-08-15",
-      "nextInstalmentAmount": 16000,
-      "notes": "3-instalment plan approved by principal. ₹16,000/month Aug–Oct.",
+      "notes": "Full tuition waiver. Transport is not covered.",
       "payments": []
     },
     {
-      "id": "STU007",
-      "name": "Arjun Reddy",
-      "class": "11",
-      "section": "A",
-      "rollNo": 3,
-      "admissionNo": "GIS-2019-0071",
-      "familyId": "FAM007",
+      "id": "STU-1006",
+      "name": "Kavya Reddy",
+      "class": "7",
+      "section": "B",
+      "rollNo": 18,
+      "admissionNo": "ADM-2020-0655",
+      "familyId": "FAM-289",
       "guardian": {
-        "name": "Venkat Reddy",
-        "phone": "+919222111333",
-        "email": "venkat.reddy@email.com"
+        "name": "Prasad Reddy",
+        "phone": "+91 97400 55677",
+        "email": "prasad.r@example.com"
+      },
+      "components": [{ "type": "TUITION", "billed": 38000, "paid": 38000 }],
+      "totalBilled": 38000,
+      "totalPaid": 0,
+      "balance": 38000,
+      "status": "PAYMENT_FAILED",
+      "daysOverdue": 3,
+      "lastPaymentDate": "2026-08-02",
+      "remindersSent": 2,
+      "lastReminderAt": "2026-08-07T18:40:00+05:30",
+      "notes": "Cheque 442190 returned — insufficient funds. Bank charge 500 not yet billed.",
+      "payments": [
+        {
+          "id": "PAY-9006",
+          "date": "2026-08-02",
+          "amount": 38000,
+          "mode": "CHEQUE",
+          "reference": "CHQ-442190",
+          "term": "Term 2",
+          "status": "BOUNCED"
+        }
+      ]
+    },
+    {
+      "id": "STU-1007",
+      "name": "Ishaan Nair",
+      "class": "10",
+      "section": "C",
+      "rollNo": 7,
+      "admissionNo": "ADM-2017-0221",
+      "familyId": "FAM-145",
+      "guardian": {
+        "name": "Anjali Nair",
+        "phone": "+91 99640 78123",
+        "email": "anjali.nair@example.com"
       },
       "components": [
-        { "type": "Tuition", "billed": 48000, "paid": 48000 },
-        { "type": "Transport", "billed": 14000, "paid": 14000 },
-        { "type": "Lab Fee", "billed": 7000, "paid": 7000 }
+        { "type": "TUITION", "billed": 52000, "paid": 17400 },
+        { "type": "EXAM", "billed": 3200, "paid": 3200 }
       ],
-      "totalBilled": 69000,
-      "totalPaid": 69000,
+      "totalBilled": 55200,
+      "totalPaid": 20600,
+      "balance": 34600,
+      "status": "INSTALMENT_PLAN",
+      "daysOverdue": 0,
+      "nextInstalmentDate": "2026-08-20",
+      "nextInstalmentAmount": 17300,
+      "lastPaymentDate": "2026-08-05",
+      "remindersSent": 0,
+      "lastReminderAt": null,
+      "notes": "3-instalment plan approved by principal on 2026-07-18. Not overdue.",
+      "payments": [
+        {
+          "id": "PAY-9007",
+          "date": "2026-08-05",
+          "amount": 17400,
+          "mode": "UPI",
+          "reference": "UPI/700219845",
+          "term": "Term 2",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "PAY-9008",
+          "date": "2026-08-05",
+          "amount": 3200,
+          "mode": "UPI",
+          "reference": "UPI/700219846",
+          "term": "Term 2",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "id": "STU-1008",
+      "name": "Rhea Fernandes",
+      "class": "6",
+      "section": "A",
+      "rollNo": 25,
+      "admissionNo": "ADM-2021-0498",
+      "familyId": "FAM-360",
+      "guardian": {
+        "name": "Clive Fernandes",
+        "phone": "+91 98200 41290",
+        "email": "clive.f@example.com"
+      },
+      "components": [
+        {
+          "type": "TUITION",
+          "billed": 36000,
+          "paid": 0,
+          "waiver": {
+            "type": "SIBLING_DISCOUNT",
+            "percent": 15,
+            "reason": "Second child"
+          }
+        },
+        { "type": "TRANSPORT", "billed": 9000, "paid": 0 }
+      ],
+      "totalBilled": 39600,
+      "totalPaid": 0,
+      "balance": 39600,
+      "status": "OVERDUE",
+      "daysOverdue": 3,
+      "lastPaymentDate": "2026-04-28",
+      "remindersSent": 1,
+      "lastReminderAt": "2026-08-06T09:15:00+05:30",
+      "notes": "Sibling of STU-1009 — same family, same guardian",
+      "payments": []
+    },
+    {
+      "id": "STU-1009",
+      "name": "Ryan Fernandes",
+      "class": "2",
+      "section": "B",
+      "rollNo": 11,
+      "admissionNo": "ADM-2024-1150",
+      "familyId": "FAM-360",
+      "guardian": {
+        "name": "Clive Fernandes",
+        "phone": "+91 98200 41290",
+        "email": "clive.f@example.com"
+      },
+      "components": [{ "type": "TUITION", "billed": 26000, "paid": 0 }],
+      "totalBilled": 26000,
+      "totalPaid": 0,
+      "balance": 26000,
+      "status": "OVERDUE",
+      "daysOverdue": 3,
+      "lastPaymentDate": "2026-04-28",
+      "remindersSent": 1,
+      "lastReminderAt": "2026-08-06T09:15:00+05:30",
+      "notes": "Sibling of STU-1008 — same family, same guardian",
+      "payments": []
+    },
+    {
+      "id": "STU-1010",
+      "name": "Tanvi Deshpande",
+      "class": "12",
+      "section": "A",
+      "rollNo": 3,
+      "admissionNo": "ADM-2015-0018",
+      "familyId": "FAM-077",
+      "guardian": {
+        "name": "Mandar Deshpande",
+        "phone": "+91 98230 66789",
+        "email": "m.deshpande@example.com"
+      },
+      "components": [
+        { "type": "TUITION", "billed": 71000, "paid": 71000 },
+        { "type": "LAB", "billed": 6500, "paid": 6500 },
+        { "type": "EXAM", "billed": 4800, "paid": 4800 }
+      ],
+      "totalBilled": 82300,
+      "totalPaid": 82300,
       "balance": 0,
       "status": "PAID",
       "daysOverdue": 0,
-      "lastPaymentDate": "2025-07-08",
+      "lastPaymentDate": "2026-07-29",
       "remindersSent": 0,
       "lastReminderAt": null,
       "notes": null,
       "payments": [
         {
-          "date": "2025-07-08",
-          "amount": 69000,
-          "mode": "Online Payment",
-          "status": "SUCCESS",
-          "reference": "PAY-20250708-9921"
+          "id": "PAY-9010",
+          "date": "2026-07-29",
+          "amount": 82300,
+          "mode": "NETBANKING",
+          "reference": "ICICI/5520114",
+          "term": "Term 2",
+          "status": "SUCCESS"
         }
       ]
     },
     {
-      "id": "STU008",
-      "name": "Meera Fernandes",
-      "class": "5",
-      "section": "A",
+      "id": "STU-1011",
+      "name": "Mohammed Ayaan Siddiqui",
+      "class": "9",
+      "section": "B",
       "rollNo": 14,
-      "admissionNo": "GIS-2022-0612",
-      "familyId": "FAM008",
+      "admissionNo": "ADM-2019-0377",
+      "familyId": "FAM-244",
       "guardian": {
-        "name": "Clive Fernandes",
-        "phone": "+919444555666",
-        "email": "clive.fernandes@email.com"
+        "name": "Imran Siddiqui",
+        "phone": "+91 90190 33445",
+        "email": null
       },
       "components": [
-        { "type": "Tuition", "billed": 32000, "paid": 0 },
-        { "type": "Transport", "billed": 8000, "paid": 0 },
-        { "type": "Activity Fee", "billed": 2000, "paid": 0 }
+        { "type": "TUITION", "billed": 46000, "paid": 0 },
+        { "type": "TRANSPORT", "billed": 9000, "paid": 9000 }
       ],
+      "totalBilled": 55000,
+      "totalPaid": 9000,
+      "balance": 46000,
+      "status": "OVERDUE",
+      "daysOverdue": 3,
+      "lastPaymentDate": "2026-07-11",
+      "remindersSent": 3,
+      "lastReminderAt": "2026-08-07T11:02:00+05:30",
+      "notes": "No email on file. Phone only.",
+      "payments": [
+        {
+          "id": "PAY-9011",
+          "date": "2026-07-11",
+          "amount": 9000,
+          "mode": "CASH",
+          "reference": "RCPT-4102",
+          "term": "Term 2",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "id": "STU-1012",
+      "name": "Anya Krishnan",
+      "class": "4",
+      "section": "A",
+      "rollNo": 30,
+      "admissionNo": "ADM-2023-0902",
+      "familyId": "FAM-455",
+      "guardian": {
+        "name": "Deepa Krishnan",
+        "phone": "+91 98860 77001",
+        "email": "deepa.k@example.com"
+      },
+      "components": [{ "type": "TUITION", "billed": 30000, "paid": 15000 }],
+      "totalBilled": 30000,
+      "totalPaid": 15000,
+      "balance": 15000,
+      "status": "WITHDRAWN",
+      "daysOverdue": 0,
+      "withdrawnOn": "2026-07-25",
+      "refundDue": 4500,
+      "lastPaymentDate": "2026-06-20",
+      "remindersSent": 0,
+      "lastReminderAt": null,
+      "notes": "Left mid-term. Refund of 4500 pending approval. Do not chase.",
+      "payments": [
+        {
+          "id": "PAY-9012",
+          "date": "2026-06-20",
+          "amount": 15000,
+          "mode": "UPI",
+          "reference": "UPI/588120334",
+          "term": "Term 2",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "id": "STU-1013",
+      "name": "Vihaan Gupta",
+      "class": "8",
+      "section": "B",
+      "rollNo": 6,
+      "admissionNo": "ADM-2020-0611",
+      "familyId": "FAM-301",
+      "guardian": {
+        "name": "Ritu Gupta",
+        "phone": "+91 99530 12876",
+        "email": "ritu.gupta@example.com"
+      },
+      "components": [{ "type": "TUITION", "billed": 42000, "paid": 0 }],
       "totalBilled": 42000,
       "totalPaid": 0,
       "balance": 42000,
       "status": "OVERDUE",
-      "daysOverdue": 21,
-      "lastPaymentDate": null,
-      "remindersSent": 2,
-      "lastReminderAt": "2025-07-30T11:00:00+05:30",
-      "reminderDeliveryStatus": "delivered",
-      "notes": null,
-      "payments": []
-    },
-    {
-      "id": "STU009",
-      "name": "Joel Fernandes",
-      "class": "3",
-      "section": "B",
-      "rollNo": 27,
-      "admissionNo": "GIS-2023-0801",
-      "familyId": "FAM008",
-      "guardian": {
-        "name": "Clive Fernandes",
-        "phone": "+919444555666",
-        "email": "clive.fernandes@email.com"
-      },
-      "components": [
-        { "type": "Tuition", "billed": 28000, "paid": 0 },
-        { "type": "Activity Fee", "billed": 2000, "paid": 0 }
-      ],
-      "totalBilled": 30000,
-      "totalPaid": 0,
-      "balance": 30000,
-      "status": "OVERDUE",
-      "daysOverdue": 21,
-      "lastPaymentDate": null,
-      "remindersSent": 2,
-      "lastReminderAt": "2025-07-30T11:00:00+05:30",
-      "reminderDeliveryStatus": "delivered",
-      "notes": null,
-      "payments": []
-    },
-    {
-      "id": "STU010",
-      "name": "Sanya Kapoor",
-      "class": "10",
-      "section": "B",
-      "rollNo": 9,
-      "admissionNo": "GIS-2020-0155",
-      "familyId": "FAM009",
-      "guardian": {
-        "name": "Neeraj Kapoor",
-        "phone": "+919666777888",
-        "email": "neeraj.kapoor@email.com"
-      },
-      "components": [
-        { "type": "Tuition", "billed": 45000, "paid": 45000, "waiver": "Merit Scholarship" },
-        { "type": "Transport", "billed": 12000, "paid": 3000 },
-        { "type": "Lab Fee", "billed": 5000, "paid": 5000, "waiver": "Merit Scholarship" }
-      ],
-      "totalBilled": 62000,
-      "totalPaid": 8000,
-      "balance": 9000,
-      "status": "OVERDUE",
-      "daysOverdue": 7,
-      "lastPaymentDate": "2025-07-18",
-      "remindersSent": 1,
-      "lastReminderAt": "2025-08-02T08:30:00+05:30",
-      "reminderDeliveryStatus": "delivered",
-      "notes": "Merit scholarship covers Tuition + Lab Fee. Only transport fee outstanding.",
+      "daysOverdue": 97,
+      "lastPaymentDate": "2026-01-14",
+      "remindersSent": 8,
+      "lastReminderAt": "2026-08-07T09:00:00+05:30",
+      "notes": "Term 1 balance also outstanding. Escalated to principal twice.",
       "payments": [
         {
-          "date": "2025-07-18",
-          "amount": 3000,
-          "mode": "UPI",
-          "status": "SUCCESS",
-          "reference": "UPI-20250718-3341"
+          "id": "PAY-9013",
+          "date": "2026-01-14",
+          "amount": 20000,
+          "mode": "CASH",
+          "reference": "RCPT-3011",
+          "term": "Term 1",
+          "status": "SUCCESS"
         }
       ]
     },
     {
-      "id": "STU011",
-      "name": "Rahul Deshmukh",
-      "class": "4",
+      "id": "STU-1014",
+      "name": "Saanvi Joshi",
+      "class": "1",
       "section": "A",
-      "rollNo": 20,
-      "admissionNo": "GIS-2023-0722",
-      "familyId": "FAM010",
+      "rollNo": 17,
+      "admissionNo": "ADM-2025-1440",
+      "familyId": "FAM-602",
       "guardian": {
-        "name": "Amita Deshmukh",
-        "phone": "+919111222333",
-        "email": "amita.deshmukh@email.com"
+        "name": "Ketan Joshi",
+        "phone": "+91 98190 40023",
+        "email": "ketan.joshi@example.com"
       },
       "components": [
-        { "type": "Tuition", "billed": 30000, "paid": 30000 },
-        { "type": "Activity Fee", "billed": 2000, "paid": 2000 }
+        { "type": "TUITION", "billed": 24000, "paid": 24000 },
+        { "type": "TRANSPORT", "billed": 9000, "paid": 0 }
       ],
-      "totalBilled": 32000,
-      "totalPaid": 32000,
+      "totalBilled": 33000,
+      "totalPaid": 24000,
+      "balance": 9000,
+      "status": "PARTIALLY_PAID",
+      "daysOverdue": 3,
+      "lastPaymentDate": "2026-08-04",
+      "remindersSent": 0,
+      "lastReminderAt": null,
+      "notes": "Transport opted in after billing",
+      "payments": [
+        {
+          "id": "PAY-9014",
+          "date": "2026-08-04",
+          "amount": 24000,
+          "mode": "UPI",
+          "reference": "UPI/699301882",
+          "term": "Term 2",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "id": "STU-1015",
+      "name": "Arjun Menon",
+      "class": "11",
+      "section": "A",
+      "rollNo": 8,
+      "admissionNo": "ADM-2016-0140",
+      "familyId": "FAM-118",
+      "guardian": {
+        "name": "Latha Menon",
+        "phone": "+91 94470 55210",
+        "email": "latha.menon@example.com"
+      },
+      "components": [
+        { "type": "TUITION", "billed": 68000, "paid": 68000 },
+        { "type": "LAB", "billed": 6500, "paid": 0 }
+      ],
+      "totalBilled": 74500,
+      "totalPaid": 68000,
+      "balance": 6500,
+      "status": "PARTIALLY_PAID",
+      "daysOverdue": 3,
+      "lastPaymentDate": "2026-08-05",
+      "remindersSent": 1,
+      "lastReminderAt": "2026-08-06T09:15:00+05:30",
+      "notes": null,
+      "payments": [
+        {
+          "id": "PAY-9015",
+          "date": "2026-08-05",
+          "amount": 68000,
+          "mode": "NETBANKING",
+          "reference": "SBI/7712009",
+          "term": "Term 2",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "id": "STU-1016",
+      "name": "Diya Bhattacharya",
+      "class": "5",
+      "section": "A",
+      "rollNo": 22,
+      "admissionNo": "ADM-2022-0790",
+      "familyId": "FAM-388",
+      "guardian": {
+        "name": "Sourav Bhattacharya",
+        "phone": "+91 98300 66412",
+        "email": "sourav.b@example.com"
+      },
+      "components": [{ "type": "TUITION", "billed": 34000, "paid": 34000 }],
+      "totalBilled": 34000,
+      "totalPaid": 34000,
       "balance": 0,
       "status": "PAID",
       "daysOverdue": 0,
-      "lastPaymentDate": "2025-07-14",
-      "remindersSent": 0,
-      "lastReminderAt": null,
-      "notes": null,
+      "lastPaymentDate": "2026-08-08",
+      "remindersSent": 1,
+      "lastReminderAt": "2026-08-06T09:15:00+05:30",
+      "notes": "Paid this morning, after the last reminder went out",
       "payments": [
         {
-          "date": "2025-07-14",
-          "amount": 32000,
-          "mode": "Online Payment",
-          "status": "SUCCESS",
-          "reference": "PAY-20250714-5501"
+          "id": "PAY-9016",
+          "date": "2026-08-08",
+          "amount": 34000,
+          "mode": "UPI",
+          "reference": "UPI/711450992",
+          "term": "Term 2",
+          "status": "SUCCESS"
         }
       ]
     },
     {
-      "id": "STU012",
-      "name": "Fatima Khan",
-      "class": "9",
-      "section": "B",
-      "rollNo": 15,
-      "admissionNo": "GIS-2020-0210",
-      "familyId": "FAM011",
+      "id": "STU-1017",
+      "name": "Kabir Singh Ahluwalia",
+      "class": "10",
+      "section": "A",
+      "rollNo": 1,
+      "admissionNo": "ADM-2017-0209",
+      "familyId": "FAM-160",
       "guardian": {
-        "name": "Imran Khan",
-        "phone": "+919888999000",
-        "email": "imran.khan@email.com"
+        "name": "Jasleen Ahluwalia",
+        "phone": "+91 98110 33988",
+        "email": "jasleen.a@example.com"
       },
       "components": [
-        { "type": "Tuition", "billed": 42000, "paid": 0 },
-        { "type": "Transport", "billed": 11000, "paid": 0 }
+        { "type": "TUITION", "billed": 52000, "paid": 0 },
+        { "type": "EXAM", "billed": 3200, "paid": 0 },
+        { "type": "TRANSPORT", "billed": 9000, "paid": 0 }
       ],
-      "totalBilled": 53000,
+      "totalBilled": 64200,
       "totalPaid": 0,
-      "balance": 53000,
+      "balance": 64200,
       "status": "OVERDUE",
-      "daysOverdue": 21,
-      "lastPaymentDate": null,
-      "remindersSent": 2,
-      "lastReminderAt": "2025-07-29T16:00:00+05:30",
-      "reminderDeliveryStatus": "failed",
-      "notes": "Phone number may be incorrect — SMS delivery failed twice.",
+      "daysOverdue": 3,
+      "lastPaymentDate": "2026-05-06",
+      "remindersSent": 1,
+      "lastReminderAt": "2026-08-06T09:15:00+05:30",
+      "notes": null,
       "payments": []
     },
     {
-      "id": "STU013",
-      "name": "Vivaan Bose",
-      "class": "2",
+      "id": "STU-1018",
+      "name": "Ira Chatterjee",
+      "class": "7",
       "section": "A",
-      "rollNo": 30,
-      "admissionNo": "GIS-2024-0901",
-      "familyId": "FAM012",
+      "rollNo": 5,
+      "admissionNo": "ADM-2021-0530",
+      "familyId": "FAM-341",
       "guardian": {
-        "name": "Dipankar Bose",
-        "phone": "+919000111222",
-        "email": "dipankar.bose@email.com"
+        "name": "Ananya Chatterjee",
+        "phone": "+91 98310 22045",
+        "email": "ananya.c@example.com"
       },
       "components": [
-        { "type": "Tuition", "billed": 25000, "paid": 25000 },
-        { "type": "Activity Fee", "billed": 1500, "paid": 1500 }
-      ],
-      "totalBilled": 26500,
-      "totalPaid": 28000,
-      "balance": -1500,
-      "status": "CREDIT_BALANCE",
-      "daysOverdue": 0,
-      "lastPaymentDate": "2025-07-02",
-      "remindersSent": 0,
-      "lastReminderAt": null,
-      "notes": "Overpaid by ₹1,500. Will adjust in Term 3.",
-      "payments": [
         {
-          "date": "2025-07-02",
-          "amount": 28000,
-          "mode": "Bank Transfer",
-          "status": "SUCCESS",
-          "reference": "NEFT-20250702-1188"
+          "type": "TUITION",
+          "billed": 38000,
+          "paid": 0,
+          "waiver": {
+            "type": "STAFF_WARD",
+            "percent": 50,
+            "reason": "Parent is school staff"
+          }
         }
-      ]
-    },
-    {
-      "id": "STU014",
-      "name": "Tara Joshi",
-      "class": "8",
-      "section": "A",
-      "rollNo": 11,
-      "admissionNo": "GIS-2021-0298",
-      "familyId": "FAM013",
-      "guardian": {
-        "name": "Sandeep Joshi",
-        "phone": "+919444333222",
-        "email": "sandeep.joshi@email.com"
-      },
-      "components": [
-        { "type": "Tuition", "billed": 40000, "paid": 40000 },
-        { "type": "Transport", "billed": 10000, "paid": 10000 }
       ],
-      "totalBilled": 50000,
-      "totalPaid": 50000,
+      "totalBilled": 19000,
+      "totalPaid": 19000,
       "balance": 0,
-      "withdrawnOn": "2025-07-25",
-      "refundDue": 18000,
-      "status": "WITHDRAWN",
+      "status": "PAID",
       "daysOverdue": 0,
-      "lastPaymentDate": "2025-07-01",
+      "lastPaymentDate": "2026-08-05",
       "remindersSent": 0,
       "lastReminderAt": null,
-      "notes": "Transferred to another school. Pro-rata refund of ₹18,000 pending.",
-      "payments": [
-        {
-          "date": "2025-07-01",
-          "amount": 50000,
-          "mode": "Online Payment",
-          "status": "SUCCESS",
-          "reference": "PAY-20250701-2209"
-        }
-      ]
-    },
-    {
-      "id": "STU015",
-      "name": "Ishaan Malhotra",
-      "class": "6",
-      "section": "A",
-      "rollNo": 25,
-      "admissionNo": "GIS-2022-0478",
-      "familyId": "FAM014",
-      "guardian": {
-        "name": "Pooja Malhotra",
-        "phone": "+919555666777",
-        "email": "pooja.malhotra@email.com"
-      },
-      "components": [
-        { "type": "Tuition", "billed": 35000, "paid": 20000 },
-        { "type": "Transport", "billed": 9000, "paid": 9000 },
-        { "type": "Activity Fee", "billed": 2500, "paid": 0 }
-      ],
-      "totalBilled": 46500,
-      "totalPaid": 29000,
-      "balance": 17500,
-      "status": "PARTIALLY_PAID",
-      "daysOverdue": 10,
-      "lastPaymentDate": "2025-07-22",
-      "remindersSent": 1,
-      "lastReminderAt": "2025-08-01T10:00:00+05:30",
-      "reminderDeliveryStatus": "delivered",
       "notes": null,
       "payments": [
         {
-          "date": "2025-07-15",
-          "amount": 9000,
-          "mode": "Cash",
-          "status": "SUCCESS",
-          "reference": "CASH-20250715-03"
-        },
-        {
-          "date": "2025-07-22",
-          "amount": 20000,
-          "mode": "UPI",
-          "status": "SUCCESS",
-          "reference": "UPI-20250722-6654"
+          "id": "PAY-9018",
+          "date": "2026-08-05",
+          "amount": 19000,
+          "mode": "PAYROLL_DEDUCTION",
+          "reference": "PAY-AUG-2026",
+          "term": "Term 2",
+          "status": "SUCCESS"
         }
       ]
+    },
+    {
+      "id": "STU-1019",
+      "name": "Neel Kulkarni",
+      "class": "3",
+      "section": "B",
+      "rollNo": 19,
+      "admissionNo": "ADM-2024-1088",
+      "familyId": "FAM-524",
+      "guardian": {
+        "name": "Aditi Kulkarni",
+        "phone": "+91 96570 11834",
+        "email": "aditi.k@example.com"
+      },
+      "components": [{ "type": "TUITION", "billed": 28000, "paid": 0 }],
+      "totalBilled": 28000,
+      "totalPaid": 0,
+      "balance": 28000,
+      "status": "OVERDUE",
+      "daysOverdue": 3,
+      "lastPaymentDate": null,
+      "remindersSent": 0,
+      "lastReminderAt": null,
+      "notes": "New admission this year, never paid before — no payment history",
+      "payments": []
+    },
+    {
+      "id": "STU-1020",
+      "name": "Aditya Rao",
+      "class": "12",
+      "section": "B",
+      "rollNo": 10,
+      "admissionNo": "ADM-2015-0044",
+      "familyId": "FAM-089",
+      "guardian": {
+        "name": "Vikram Rao",
+        "phone": "+91 98450 90011",
+        "email": "vikram.rao@example.com"
+      },
+      "components": [
+        { "type": "TUITION", "billed": 71000, "paid": 40000 },
+        { "type": "LAB", "billed": 6500, "paid": 6500 },
+        { "type": "EXAM", "billed": 4800, "paid": 0 }
+      ],
+      "totalBilled": 82300,
+      "totalPaid": 46500,
+      "balance": 35800,
+      "status": "PARTIALLY_PAID",
+      "daysOverdue": 3,
+      "lastPaymentDate": "2026-07-30",
+      "remindersSent": 2,
+      "lastReminderAt": "2026-08-07T15:20:00+05:30",
+      "notes": "Board exam fee blocked until cleared",
+      "payments": [
+        {
+          "id": "PAY-9020",
+          "date": "2026-07-30",
+          "amount": 40000,
+          "mode": "UPI",
+          "reference": "UPI/690012776",
+          "term": "Term 2",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "PAY-9021",
+          "date": "2026-07-30",
+          "amount": 6500,
+          "mode": "UPI",
+          "reference": "UPI/690012777",
+          "term": "Term 2",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "id": "STU-1021",
+      "name": "Myra Dsouza",
+      "class": "6",
+      "section": "C",
+      "rollNo": 27,
+      "admissionNo": "ADM-2021-0567",
+      "familyId": "FAM-372",
+      "guardian": {
+        "name": "Glenn Dsouza",
+        "phone": "+91 98670 44120",
+        "email": "glenn.d@example.com"
+      },
+      "components": [
+        { "type": "TUITION", "billed": 36000, "paid": 36000 },
+        { "type": "TRANSPORT", "billed": 9000, "paid": 9000 }
+      ],
+      "totalBilled": 45000,
+      "totalPaid": 45000,
+      "balance": 0,
+      "status": "PAID",
+      "daysOverdue": 0,
+      "lastPaymentDate": "2026-08-01",
+      "remindersSent": 0,
+      "lastReminderAt": null,
+      "notes": null,
+      "payments": [
+        {
+          "id": "PAY-9022",
+          "date": "2026-08-01",
+          "amount": 45000,
+          "mode": "UPI",
+          "reference": "UPI/688100234",
+          "term": "Term 2",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "id": "STU-1022",
+      "name": "Reyansh Yadav",
+      "class": "9",
+      "section": "C",
+      "rollNo": 16,
+      "admissionNo": "ADM-2019-0402",
+      "familyId": "FAM-255",
+      "guardian": {
+        "name": "Sunil Yadav",
+        "phone": "+91 88260 71199",
+        "email": null
+      },
+      "components": [{ "type": "TUITION", "billed": 46000, "paid": 0 }],
+      "totalBilled": 46000,
+      "totalPaid": 0,
+      "balance": 46000,
+      "status": "OVERDUE",
+      "daysOverdue": 3,
+      "lastPaymentDate": "2026-05-04",
+      "remindersSent": 1,
+      "lastReminderAt": "2026-08-06T09:15:00+05:30",
+      "notes": "Reminder bounced — number reported invalid by SMS gateway",
+      "reminderDeliveryStatus": "FAILED",
+      "payments": []
+    },
+    {
+      "id": "STU-1023",
+      "name": "Sara Thomas",
+      "class": "4",
+      "section": "B",
+      "rollNo": 13,
+      "admissionNo": "ADM-2023-0844",
+      "familyId": "FAM-467",
+      "guardian": {
+        "name": "Bijoy Thomas",
+        "phone": "+91 94950 33207",
+        "email": "bijoy.t@example.com"
+      },
+      "components": [{ "type": "TUITION", "billed": 30000, "paid": 30000 }],
+      "totalBilled": 30000,
+      "totalPaid": 30000,
+      "balance": 0,
+      "status": "PAID",
+      "daysOverdue": 0,
+      "lastPaymentDate": "2026-08-02",
+      "remindersSent": 0,
+      "lastReminderAt": null,
+      "notes": null,
+      "payments": [
+        {
+          "id": "PAY-9023",
+          "date": "2026-08-02",
+          "amount": 30000,
+          "mode": "CARD",
+          "reference": "TXN-4471209",
+          "term": "Term 2",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "id": "STU-1024",
+      "name": "Advik Bansal",
+      "class": "2",
+      "section": "A",
+      "rollNo": 20,
+      "admissionNo": "ADM-2025-1390",
+      "familyId": "FAM-588",
+      "guardian": {
+        "name": "Pooja Bansal",
+        "phone": "+91 98730 55842",
+        "email": "pooja.bansal@example.com"
+      },
+      "components": [
+        { "type": "TUITION", "billed": 26000, "paid": 0 },
+        { "type": "TRANSPORT", "billed": 9000, "paid": 0 }
+      ],
+      "totalBilled": 35000,
+      "totalPaid": 0,
+      "balance": 35000,
+      "status": "OVERDUE",
+      "daysOverdue": 3,
+      "lastPaymentDate": null,
+      "remindersSent": 0,
+      "lastReminderAt": null,
+      "notes": null,
+      "payments": []
     }
   ]
 }

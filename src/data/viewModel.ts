@@ -53,8 +53,8 @@ function detectWaiver(student: RawStudent): WaiverInfo | null {
 
   if (owedComponents.length === 0) return null;
 
-  // Use the first waiver type as the label (they're usually the same)
-  const waiverType = waivedComponents[0].waiver!;
+  // Use the first waiver's type label (waiver is now an object with a .type field)
+  const waiverType = waivedComponents[0].waiver!.type;
 
   if (owedComponents.length === 1) {
     return {
@@ -76,6 +76,7 @@ function detectWaiver(student: RawStudent): WaiverInfo | null {
     owedAmount: totalOwed,
   };
 }
+
 
 // ─── Main transform ───
 
